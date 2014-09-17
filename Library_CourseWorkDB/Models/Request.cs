@@ -16,7 +16,7 @@ namespace Library_CourseWorkDB.Models
         [ForeignKey("InventNumber")]
         public int InventNumberID { get; set; }
         [ForeignKey("RequestType")]
-        public string RequestTypeID { get; set; }
+        public int RequestTypeID { get; set; }
 
         public virtual ReadingCard ReadingCard { get; set; }
         public virtual InventNumber InventNumber { get; set; }
