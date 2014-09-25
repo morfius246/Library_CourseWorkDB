@@ -7,10 +7,9 @@ using System.Web;
 
 namespace Library_CourseWorkDB.Models
 {
-    public class Issued
+    public class ConfirmedRequest
     {
         [Key]
-        public int ID { get; set; }
         [ForeignKey("Request")]
         public int RequestID { get; set; }
         public DateTime GiveAwayDate { get; set; }

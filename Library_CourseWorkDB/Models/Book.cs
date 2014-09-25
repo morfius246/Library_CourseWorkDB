@@ -17,6 +17,6 @@ namespace Library_CourseWorkDB.Models
         public int Pages { get; set; }
 
         public virtual ICollection<Author> AuthorsList { get; set; }
-        public virtual ICollection<Request> RequestsList { get; set; }
+        public virtual ICollection<BookCopy> InventNumbers { get; set; } 
     }
 }

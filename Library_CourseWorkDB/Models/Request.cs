@@ -11,15 +11,19 @@ namespace Library_CourseWorkDB.Models
     {
         [Key]
         public int ID { get; set; }
+
         [ForeignKey("ReadingCard")]
         public int ReadingCardID { get; set; }
-        [ForeignKey("InventNumber")]
+        [ForeignKey("BookCopy")]
         public int InventNumberID { get; set; }
         [ForeignKey("RequestType")]
         public int RequestTypeID { get; set; }
+        //[ForeignKey("ConfirmedRequest")]
+        //public int? ConfirmedRequestID { get; set; }
 
+        public virtual ConfirmedRequest ConfirmedRequest { get; set; }
         public virtual ReadingCard ReadingCard { get; set; }
-        public virtual InventNumber InventNumber { get; set; }
+        public virtual BookCopy BookCopy { get; set; }
         public virtual RequestType RequestType { get; set; }
     }
 }

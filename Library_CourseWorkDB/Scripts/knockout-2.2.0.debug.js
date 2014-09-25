@@ -788,7 +788,7 @@ ko.memoization = (function () {
         unmemoize: function (memoId, callbackParams) {
             var callback = memos[memoId];
             if (callback === undefined)
-                throw new Error("Couldn't find any memo with ID " + memoId + ". Perhaps it's already been unmemoized.");
+                throw new Error("Couldn't find any memo with InventaryNumber " + memoId + ". Perhaps it's already been unmemoized.");
             try {
                 callback.apply(null, callbackParams || []);
                 return true;
@@ -2760,7 +2760,7 @@ ko.templateEngine.prototype['makeTemplateSource'] = function(template, templateD
         templateDocument = templateDocument || document;
         var elem = templateDocument.getElementById(template);
         if (!elem)
-            throw new Error("Cannot find template with ID " + template);
+            throw new Error("Cannot find template with InventaryNumber " + template);
         return new ko.templateSources.domElement(elem);
     } else if ((template.nodeType == 1) || (template.nodeType == 8)) {
         // Anonymous template

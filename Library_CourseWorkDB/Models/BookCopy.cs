@@ -7,10 +7,10 @@ using System.Web;
 
 namespace Library_CourseWorkDB.Models
 {
-    public class InventNumber
+    public class BookCopy
     {
         [Key]
-        public int ID { get; set; }
+        public int InventaryNumber { get; set; }
         [ForeignKey("Book")]
         public int BookID { get; set; }
         [ForeignKey("Status")]

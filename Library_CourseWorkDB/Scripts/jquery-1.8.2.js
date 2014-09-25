@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * jQuery JavaScript Library v1.8.2
  * http://jquery.com/
  *
@@ -143,7 +143,7 @@ jQuery.fn = jQuery.prototype = {
 					// nodes that are no longer in the document #6963
 					if ( elem && elem.parentNode ) {
 						// Handle the case where IE and Opera return items
-						// by name instead of ID
+						// by name instead of InventaryNumber
 						if ( elem.id !== match[2] ) {
 							return rootjQuery.find( selector );
 						}
@@ -1551,7 +1551,7 @@ jQuery.extend({
 			// attached directly to the object so GC can occur automatically
 			cache = isNode ? jQuery.cache : elem,
 
-			// Only defining an ID for JS objects if its cache already exists allows
+			// Only defining an InventaryNumber for JS objects if its cache already exists allows
 			// the code to shortcut on the same path as a DOM node with no cache
 			id = isNode ? elem[ internalKey ] : elem[ internalKey ] && internalKey;
 
@@ -1562,7 +1562,7 @@ jQuery.extend({
 		}
 
 		if ( !id ) {
-			// Only DOM nodes need a new unique ID for each element since their data
+			// Only DOM nodes need a new unique InventaryNumber for each element since their data
 			// ends up in the global cache
 			if ( isNode ) {
 				elem[ internalKey ] = id = jQuery.deletedIds.pop() || jQuery.guid++;
@@ -2662,7 +2662,7 @@ jQuery.event = {
 			selector = handleObjIn.selector;
 		}
 
-		// Make sure that the handler has a unique ID, used to find/remove it later
+		// Make sure that the handler has a unique InventaryNumber, used to find/remove it later
 		if ( !handler.guid ) {
 			handler.guid = jQuery.guid++;
 		}
@@ -3768,7 +3768,7 @@ var cachedruns,
 	rcombinators = new RegExp( "^" + whitespace + "*([\\x20\\t\\r\\n\\f>+~])" + whitespace + "*" ),
 	rpseudo = new RegExp( pseudos ),
 
-	// Easily-parseable/retrievable ID or TAG or CLASS selectors
+	// Easily-parseable/retrievable InventaryNumber or TAG or CLASS selectors
 	rquickExpr = /^(?:#([\w\-]+)|(\w+)|\.([\w\-]+))$/,
 
 	rnot = /^:not/,
@@ -3846,7 +3846,7 @@ var cachedruns,
 	}),
 
 	// Check if getElementById returns elements by name
-	// Check if getElementsByName privileges form controls or returns elements by ID
+	// Check if getElementsByName privileges form controls or returns elements by InventaryNumber
 	assertUsableName = assert(function( div ) {
 		// Inject content
 		div.id = expando + 0;
@@ -3899,7 +3899,7 @@ function Sizzle( selector, context, results, seed ) {
 
 	if ( !xml && !seed ) {
 		if ( (match = rquickExpr.exec( selector )) ) {
-			// Speed-up: Sizzle("#ID")
+			// Speed-up: Sizzle("#InventaryNumber")
 			if ( (m = match[1]) ) {
 				if ( nodeType === 9 ) {
 					elem = context.getElementById( m );
@@ -3907,7 +3907,7 @@ function Sizzle( selector, context, results, seed ) {
 					// nodes that are no longer in the document #6963
 					if ( elem && elem.parentNode ) {
 						// Handle the case where IE, Opera, and Webkit return items
-						// by name instead of ID
+						// by name instead of InventaryNumber
 						if ( elem.id === m ) {
 							results.push( elem );
 							return results;
@@ -5103,9 +5103,9 @@ function select( selector, context, results, seed, xml ) {
 		// Try to minimize operations if there is only one group
 		if ( match.length === 1 ) {
 
-			// Take a shortcut and set the context if the root selector is an ID
+			// Take a shortcut and set the context if the root selector is an InventaryNumber
 			tokens = match[0] = match[0].slice( 0 );
-			if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
+			if ( tokens.length > 2 && (token = tokens[0]).type === "InventaryNumber" &&
 					context.nodeType === 9 && !xml &&
 					Expr.relative[ tokens[1].type ] ) {
 
@@ -5237,7 +5237,7 @@ if ( document.querySelectorAll ) {
 					newSelector = context.nodeType === 9 && selector;
 
 				// qSA works strangely on Element-rooted queries
-				// We can work around this by specifying an extra ID on the root
+				// We can work around this by specifying an extra InventaryNumber on the root
 				// and working up from there (Thanks to Andrew Dupont for the technique)
 				// IE 8 doesn't work on object elements
 				if ( context.nodeType === 1 && context.nodeName.toLowerCase() !== "object" ) {
