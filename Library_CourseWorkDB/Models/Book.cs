@@ -12,7 +12,7 @@ namespace Library_CourseWorkDB.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string UDC { get; set; }
-        public DateTime EditionDate{ get; set; }
+        public int EditionYear{ get; set; }
         public string Publishing { get; set; }
         public int Pages { get; set; }
 

@@ -172,3 +172,4 @@ C:\Users\klok\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Deb
 C:\Users\klok\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.pdb
 C:\Users\klok\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.initialCreate.resources
 C:\Users\klok\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.csproj.GenerateResource.Cache
+C:\Users\klok\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.ChangedEditionDateToEditionYear.resources
