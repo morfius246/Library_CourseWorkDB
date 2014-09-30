@@ -1,0 +1,40 @@
+﻿@model Library_CourseWorkDB.Models.Request
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Request</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReadingCard.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReadingCard.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookCopy.InventaryNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookCopy.InventaryNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RequestType.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RequestType.Name)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

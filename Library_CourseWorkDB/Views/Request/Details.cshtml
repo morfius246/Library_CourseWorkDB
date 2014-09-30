@@ -1,0 +1,36 @@
+﻿@model Library_CourseWorkDB.Models.Request
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Request</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReadingCard.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReadingCard.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BookCopy.InventaryNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookCopy.InventaryNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RequestType.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RequestType.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

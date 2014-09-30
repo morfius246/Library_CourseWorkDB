@@ -1,0 +1,54 @@
+﻿@model Library_CourseWorkDB.Models.Request
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Request</legend>
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ReadingCardID, "ReadingCard")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ReadingCardID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ReadingCardID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InventNumberID, "BookCopy")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("InventNumberID", String.Empty)
+            @Html.ValidationMessageFor(model => model.InventNumberID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RequestTypeID, "RequestType")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("RequestTypeID", String.Empty)
+            @Html.ValidationMessageFor(model => model.RequestTypeID)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
