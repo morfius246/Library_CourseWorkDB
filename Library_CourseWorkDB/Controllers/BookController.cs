@@ -59,6 +59,28 @@ namespace Library_CourseWorkDB.Controllers
             return View(book);
         }
 
+        public ActionResult CreateCopy()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Book/Create
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateCopy(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Books.Add(book);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(book);
+        }
+
         //
         // GET: /Book/Edit/5
 
