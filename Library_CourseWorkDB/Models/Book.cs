@@ -14,6 +14,8 @@ namespace Library_CourseWorkDB.Models
         public string UDC { get; set; }
         public int EditionYear{ get; set; }
         public string Publishing { get; set; }
+
+        [Range(0, 10000)]
         public int Pages { get; set; }
 
         public virtual ICollection<Author> AuthorsList { get; set; }

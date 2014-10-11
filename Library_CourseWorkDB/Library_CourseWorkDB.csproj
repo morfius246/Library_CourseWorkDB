@@ -197,6 +197,10 @@
     <Compile Include="Migrations\201409292045291_ChangedEditionDateToEditionYear.Designer.cs">
       <DependentUpon>201409292045291_ChangedEditionDateToEditionYear.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410091925063_lab1.cs" />
+    <Compile Include="Migrations\201410091925063_lab1.Designer.cs">
+      <DependentUpon>201410091925063_lab1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Author.cs" />
@@ -346,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409292045291_ChangedEditionDateToEditionYear.resx">
       <DependentUpon>201409292045291_ChangedEditionDateToEditionYear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410091925063_lab1.resx">
+      <DependentUpon>201410091925063_lab1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
