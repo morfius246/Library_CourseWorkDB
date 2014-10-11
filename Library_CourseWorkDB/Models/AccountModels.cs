@@ -74,7 +74,34 @@ namespace Library_CourseWorkDB.Models
     {
         [Required]
         [Display(Name = "User name")]
-        public string UserName { get; set; }
+        public string Login { get; set; }
+
+        [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Last name")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Second name")]
+        public string SecondName { get; set; }
+
+        [Required]
+        [Display(Name = "Passport")]
+        public string Passport { get; set; }
+
+        [Required]
+        [Display(Name = "Phone number")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [Display(Name = "Place of work")]
+        public string PlaceOfWork { get; set; }
+
+        [Required]
+        [Display(Name = "Work position")]
+        public string WorkPosition { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -86,6 +113,8 @@ namespace Library_CourseWorkDB.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+
     }
 
     public class ExternalLogin

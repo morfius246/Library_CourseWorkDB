@@ -8,7 +8,8 @@
     <h2>Create a new account.</h2>
 </hgroup>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
@@ -16,8 +17,36 @@
         <legend>Registration Form</legend>
         <ol>
             <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
+                @Html.LabelFor(m => m.Login)
+                @Html.TextBoxFor(m => m.Login)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.LastName)
+                @Html.TextBoxFor(m => m.LastName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.SecondName)
+                @Html.TextBoxFor(m => m.SecondName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Passport)
+                @Html.TextBoxFor(m => m.Passport)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.PhoneNumber)
+                @Html.TextBoxFor(m => m.PhoneNumber)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.PlaceOfWork)
+                @Html.TextBoxFor(m => m.PlaceOfWork)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.WorkPosition)
+                @Html.TextBoxFor(m => m.WorkPosition)
             </li>
             <li>
                 @Html.LabelFor(m => m.Password)

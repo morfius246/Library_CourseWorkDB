@@ -19,6 +19,7 @@ namespace Library_CourseWorkDB.Controllers
     {
         //
         // GET: /Account/Login
+        HomeContext db = new HomeContext();
 
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -79,8 +80,22 @@ namespace Library_CourseWorkDB.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
+                    WebSecurity.CreateUserAndAccount(model.Login, model.Password);
+                    WebSecurity.Login(model.Login, model.Password);
+                    Roles.AddUserToRole(model.Login, "Student");
+                    db.ReadingCards.Add(new ReadingCard
+                    {
+                        Name = model.Login,
+                        LastName = model.LastName,
+                        Passport = model.Passport,
+                        PhoneNumber = model.PhoneNumber,
+                        PlaceOfWork = model.PlaceOfWork,
+                        RegistrationDate = DateTime.Now,
+                        SecondName = model.SecondName,
+                        WorkPosition = model.WorkPosition,
+                        BirthDate = DateTime.Now
+                    });
+                    db.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
