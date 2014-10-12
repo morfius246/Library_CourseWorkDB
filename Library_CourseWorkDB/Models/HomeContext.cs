@@ -17,6 +17,7 @@ namespace Library_CourseWorkDB.Models
         public DbSet<Request> Requests { get; set; }
         public DbSet<RequestType> RequestTypes { get; set; }
         public DbSet<Status> Statuses { get; set; }
+        public DbSet<UDC> UDCs { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -5,13 +5,13 @@ namespace Library_CourseWorkDB.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class lab1 : IMigrationMetadata
+    public sealed partial class UDCAdded : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(lab1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UDCAdded));
         
         string IMigrationMetadata.Id
         {
-            get { return "201410091925063_lab1"; }
+            get { return "201410121349301_UDCAdded"; }
         }
         
         string IMigrationMetadata.Source

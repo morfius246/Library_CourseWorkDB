@@ -197,9 +197,9 @@
     <Compile Include="Migrations\201409292045291_ChangedEditionDateToEditionYear.Designer.cs">
       <DependentUpon>201409292045291_ChangedEditionDateToEditionYear.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201410091925063_lab1.cs" />
-    <Compile Include="Migrations\201410091925063_lab1.Designer.cs">
-      <DependentUpon>201410091925063_lab1.cs</DependentUpon>
+    <Compile Include="Migrations\201410121349301_UDCAdded.cs" />
+    <Compile Include="Migrations\201410121349301_UDCAdded.Designer.cs">
+      <DependentUpon>201410121349301_UDCAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -212,6 +212,7 @@
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\RequestType.cs" />
     <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\UDC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -351,8 +352,8 @@
     <EmbeddedResource Include="Migrations\201409292045291_ChangedEditionDateToEditionYear.resx">
       <DependentUpon>201409292045291_ChangedEditionDateToEditionYear.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410091925063_lab1.resx">
-      <DependentUpon>201410091925063_lab1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201410121349301_UDCAdded.resx">
+      <DependentUpon>201410121349301_UDCAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

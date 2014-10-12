@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace Library_CourseWorkDB.Models
@@ -9,19 +10,25 @@ namespace Library_CourseWorkDB.Models
     {
         [Key]
         public int ID { get; set; }
+
         public string Name { get; set; }
-        //[Index("UniqueAccNumb", IsUnique = true)]
-        public string UDC { get; set; }
+
         public int EditionYear{ get; set; }
+
         public string Publishing { get; set; }
 
         [Range(0, 10000)]
         public int Pages { get; set; }
 
+
+        [ForeignKey("UDC")]
+        public int UDCID { get; set; }
+
+        public virtual UDC UDC { get; set; }
         public virtual ICollection<Author> AuthorsList { get; set; }
         public virtual ICollection<BookCopy> BookCopies { get; set; }
 
-        public string GetCategory()
+        /*public string GetCategory()
         {
             if (UDC != null)
             {
@@ -47,6 +54,6 @@ namespace Library_CourseWorkDB.Models
             {
                 throw new ArgumentNullException("UDC", "Can't return subcategory of a book with null UDC");
             }
-        }
+        }*/
     }
 }
