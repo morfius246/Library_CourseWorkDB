@@ -18,8 +18,6 @@ namespace Library_CourseWorkDB.Models
         public int InventNumberID { get; set; }
         [ForeignKey("RequestType")]
         public int RequestTypeID { get; set; }
-        //[ForeignKey("ConfirmedRequest")]
-        //public int? ConfirmedRequestID { get; set; }
 
         public virtual ConfirmedRequest ConfirmedRequest { get; set; }
         public virtual ReadingCard ReadingCard { get; set; }

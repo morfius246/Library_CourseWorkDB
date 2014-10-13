@@ -13,7 +13,7 @@ namespace Library_CourseWorkDB.Models
 
         public string Name { get; set; }
 
-        public int EditionYear{ get; set; }
+        public int EditionYear { get; set; }
 
         public string Publishing { get; set; }
 
@@ -27,33 +27,5 @@ namespace Library_CourseWorkDB.Models
         public virtual UDC UDC { get; set; }
         public virtual ICollection<Author> AuthorsList { get; set; }
         public virtual ICollection<BookCopy> BookCopies { get; set; }
-
-        /*public string GetCategory()
-        {
-            if (UDC != null)
-            {
-                string[] tmp = new string[2];
-                tmp = UDC.Split('.', ',');
-                return tmp[0];
-            }
-            else
-            {
-                throw new ArgumentNullException("UDC","Can't return category of a book with null UDC");
-            }
-        }
-
-        public string GetSubCategory()
-        {
-            if (UDC != null)
-            {
-                string[] tmp = new string[2];
-                tmp = UDC.Split('.', ',');
-                return tmp[0];
-            }
-            else
-            {
-                throw new ArgumentNullException("UDC", "Can't return subcategory of a book with null UDC");
-            }
-        }*/
     }
 }

@@ -15,6 +15,8 @@ namespace Library_CourseWorkDB.Models
         public string SecondName { get; set; }
         public string Passport { get; set; }
         public string PhoneNumber { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
         public DateTime RegistrationDate { get; set; }
         public string PlaceOfWork { get; set; }
