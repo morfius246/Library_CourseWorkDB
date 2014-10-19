@@ -190,12 +190,9 @@ C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWo
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Microsoft.Web.WebPages.OAuth.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Newtonsoft.Json.dll
-C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Net.Http.Formatting.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Spatial.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Helpers.dll
-C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Http.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Http.OData.dll
-C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Http.WebHost.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Mvc.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Optimization.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Razor.dll
@@ -207,10 +204,7 @@ C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWo
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\WebMatrix.WebData.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\EntityFramework.xml
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Newtonsoft.Json.xml
-C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Net.Http.Formatting.xml
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Helpers.xml
-C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Http.xml
-C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Http.WebHost.xml
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Mvc.xml
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Razor.xml
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.WebPages.xml
@@ -259,7 +253,7 @@ C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWo
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.csprojResolveAssemblyReference.cache
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.initialCreate.resources
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.ChangedEditionDateToEditionYear.resources
-C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.lab1.resources
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.csproj.GenerateResource.Cache
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.pdb
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.UDCAdded.resources
