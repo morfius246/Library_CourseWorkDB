@@ -1,0 +1,1 @@
+﻿select * from Author order by Author.SecondName
