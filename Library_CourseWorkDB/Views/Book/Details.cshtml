@@ -1,50 +1,51 @@
 ﻿@model Library_CourseWorkDB.Models.Book
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Книга";
 }
+<link href="~/Content/MyStyles.css" rel="stylesheet" />
+<h2>Сторінка книжки</h2>
+<p>@Html.ActionLink("Back to List", "Index", "Home")</p>
+<fieldset id="myContainer">
+    <legend>Книга
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ID })
+    </legend>
 
-<h2>Details</h2>
-
-<fieldset>
-    <legend>Book</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
+    <div class="col1">
+        @Html.DisplayNameFor(model => model.Name)
     </div>
-    <div class="display-field">
+    <div class="col2">
         @Html.DisplayFor(model => model.Name)
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.UDC)
+    <div class="col1">
+        @Html.DisplayNameFor(model => model.UDC)
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UDC)
+    <div class="col2">
+        @Html.DisplayFor(model => model.UDC.Code)
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.EditionYear)
+    <div class="col1">
+        @Html.DisplayNameFor(model => model.EditionYear)
     </div>
-    <div class="display-field">
+    <div class="col2">
         @Html.DisplayFor(model => model.EditionYear)
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Publishing)
+    <div class="col1">
+        @Html.DisplayNameFor(model => model.Publishing)
     </div>
-    <div class="display-field">
+    <div class="col2">
         @Html.DisplayFor(model => model.Publishing)
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Pages)
+    <div class="col1">
+        @Html.DisplayNameFor(model => model.Pages)
     </div>
-    <div class="display-field">
+    <div class="col2">
         @Html.DisplayFor(model => model.Pages)
     </div>
 </fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+@{ Html.RenderAction("CopyList", "Book"); }

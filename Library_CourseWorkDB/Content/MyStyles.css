@@ -1,0 +1,13 @@
+﻿    #myContainer {
+        width: 40%;
+    }
+     .col1 {
+         clear: both;
+         float: left;
+         width: 35%;
+         margin-bottom: 5px;
+     }
+    .col2 {
+        width: 65%;
+        float: left;
+    }

@@ -14,5 +14,12 @@ namespace Library_CourseWorkDB.Models
         public string Description { get; set; }
 
         public virtual ICollection<Book> Books { get; set; }
+
+        public bool IsValid(HomeContext db)
+        {
+            if (db.UDCs.FirstOrDefault(u => u.Code == this.Code) != null)
+                return true;
+            return false;
+        }
     }
 }

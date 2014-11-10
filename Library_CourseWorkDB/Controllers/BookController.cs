@@ -18,7 +18,7 @@ namespace Library_CourseWorkDB.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Books.ToList());
+            return RedirectToAction("Index", "Home");
         }
 
         //
@@ -49,19 +49,46 @@ namespace Library_CourseWorkDB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Book book)
         {
+            if (!book.isDateValid())
+                ModelState.AddModelError("EditionYear", "Невірна дата публікації");
+            if (!book.UDC.IsValid(db))
+                ModelState.AddModelError("UDC.Code", "Невідомий УДК");
+
             if (ModelState.IsValid)
             {
                 db.Books.Add(book);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(book);
         }
 
-        public ActionResult CreateCopy()
+        public ActionResult CopyList(int id = 0)
         {
-            return View();
+            Book book = db.Books.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(book.BookCopies);
+        }
+
+        public ActionResult CreateCopy(int id = 0)
+        {
+            Book book = db.Books.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            List<Status> statuses = db.Statuses.ToList();
+            List<SelectListItem> selectList = new List<SelectListItem>();
+
+            for(int i = 0; i<statuses.Count;i++)
+                selectList.Add(new SelectListItem {Text = statuses[i].Name, Value = statuses[i].ID.ToString()});
+
+            ViewBag.Statuses = selectList;
+            return PartialView(book);
         }
 
         //
@@ -75,7 +102,7 @@ namespace Library_CourseWorkDB.Controllers
             {
                 db.Books.Add(book);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(book);
@@ -101,11 +128,16 @@ namespace Library_CourseWorkDB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Book book)
         {
+            if (!book.isDateValid())
+                ModelState.AddModelError("EditionYear", "Невірна дата публікації");
+            if (!book.UDC.IsValid(db))
+                ModelState.AddModelError("UDC.Code", "Невідомий УДК");
+
             if (ModelState.IsValid)
             {
                 db.Entry(book).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             return View(book);
         }
@@ -133,7 +165,7 @@ namespace Library_CourseWorkDB.Controllers
             Book book = db.Books.Find(id);
             db.Books.Remove(book);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿
-@model Library_CourseWorkDB.Models.Main
+﻿@model Library_CourseWorkDB.Models.Main
 @{
     ViewBag.Title = "Home Page";
 }
@@ -7,8 +6,8 @@
 <style>
     .book {
         margin: 1%;
-        margin-top:0.5%;
-        margin-bottom:0.5%;
+        margin-top: 0.5%;
+        margin-bottom: 0.5%;
         min-width: 450px;
         width: 76%;
         height: 50%;
@@ -20,19 +19,26 @@
     }
 </style>
 <div style="margin: 0 auto">
-<div id="list-group" style="width:20%; float:left; margin:1%; margin-top:0.5%">
-    <a href="@Url.Action("Index", "Home")" class="list-group-item">Все</a>
-    @foreach (var category in Model.CategoryList)
-    {
-        <a class="list-group-item" href="@Url.Action("Index", "Home", new {categoryCode = category.Code  })">
-            <h4>@category.Description</h4>
-        </a>
-    }
-</div>
+    <div id="list-group" style="width:20%; float:left; margin:1%; margin-top:0.5%">
+        <a href="@Url.Action("Index", "Home")" class="list-group-item">Все</a>
+        @foreach (var category in Model.CategoryList)
+        {
+            <a class="list-group-item" href="@Url.Action("Index", "Home", new { categoryCode = category.Code })">
+                <h4>@category.Description</h4>
+            </a>
+        }
+    </div>
     
-@foreach (var item in Model.BookList)
+@if (User.IsInRole("Librarian") || 1 == 1)//REMOVE 1==1 ADD STYLES
 {
-    <div class="book">
+    <div>
+         @Html.ActionLink("Create New", "Create", "Book",null, new { @class = "btn btn-default" })
+    </div>
+}
+    
+    @foreach (var item in Model.BookList)
+    {
+<div class="book">
         <div style="float:right">
             @Html.ActionLink("Просмотреть книгу", "Details", "Book", new { id = item.ID }, new { @class = "btn btn-success" })
         </div>
@@ -42,16 +48,16 @@
         <div style="width: 70%">
             @if (item.AuthorsList != null)
             {
-                    foreach(var author in item.AuthorsList)
-                    {
+                foreach (var author in item.AuthorsList)
+                {
                         <span>author</span><span>/</span>
-                    }
+                }
             }
         </div>
         <div style="width: 70%">
             Рік видання: @Html.DisplayFor(x => item.EditionYear) р.<br>
         </div>
         
-    </div>
-}
+</div>
+    }
     </div>

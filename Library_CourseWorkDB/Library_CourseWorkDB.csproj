@@ -201,6 +201,10 @@
     <Compile Include="Migrations\201410121349301_UDCAdded.Designer.cs">
       <DependentUpon>201410121349301_UDCAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201411101558460_addedValidationsToBook.cs" />
+    <Compile Include="Migrations\201411101558460_addedValidationsToBook.Designer.cs">
+      <DependentUpon>201411101558460_addedValidationsToBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Author.cs" />
@@ -225,6 +229,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\MyStyles.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -357,6 +362,8 @@
     <Content Include="Views\Request\Create.cshtml" />
     <Content Include="Views\Request\Edit.cshtml" />
     <Content Include="Views\Request\Delete.cshtml" />
+    <Content Include="Views\Book\CopyList.cshtml" />
+    <Content Include="Views\Book\CreateCopy.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -371,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410121349301_UDCAdded.resx">
       <DependentUpon>201410121349301_UDCAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411101558460_addedValidationsToBook.resx">
+      <DependentUpon>201411101558460_addedValidationsToBook.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

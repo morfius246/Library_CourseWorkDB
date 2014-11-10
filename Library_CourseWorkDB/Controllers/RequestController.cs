@@ -28,6 +28,7 @@ namespace Library_CourseWorkDB.Controllers
         public ActionResult Details(int id = 0)
         {
             Request request = db.Requests.Find(id);
+            
             if (request == null)
             {
                 return HttpNotFound();

@@ -3,45 +3,45 @@
 @{
     ViewBag.Title = "Delete";
 }
-
+<link href="~/Content/MyStyles.css" rel="stylesheet" />
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Book</legend>
+<fieldset id="myContainer">
+    <legend></legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
+    <div class="col1">
+        @Html.DisplayNameFor(model => model.Name)
     </div>
-    <div class="display-field">
+    <div class="col2">
         @Html.DisplayFor(model => model.Name)
     </div>
 
-    <div class="display-label">
+    <div class="col1">
          @Html.DisplayNameFor(model => model.UDC)
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UDC)
+    <div class="col2">
+        @Html.DisplayFor(model => model.UDC.Code).@Html.DisplayFor(model => model.UDC.Description)
     </div>
 
-    <div class="display-label">
+    <div class="col1">
          @Html.DisplayNameFor(model => model.EditionYear)
     </div>
-    <div class="display-field">
+    <div class="col2    ">
         @Html.DisplayFor(model => model.EditionYear)
     </div>
 
-    <div class="display-label">
+    <div class="col1">
          @Html.DisplayNameFor(model => model.Publishing)
     </div>
-    <div class="display-field">
+    <div class="col2">
         @Html.DisplayFor(model => model.Publishing)
     </div>
 
-    <div class="display-label">
+    <div class="col1">
          @Html.DisplayNameFor(model => model.Pages)
     </div>
-    <div class="display-field">
+    <div class="col2">
         @Html.DisplayFor(model => model.Pages)
     </div>
 </fieldset>
@@ -49,6 +49,6 @@
     @Html.AntiForgeryToken()
     <p>
         <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Index", "Home")
     </p>
 }
