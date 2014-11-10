@@ -1,3 +1,22 @@
 ﻿@model Library_CourseWorkDB.Models.Book
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#partialForm").css("display","NONE");
+    });
+</script>
+<div id="partialForm">
+    @using (Html.BeginForm("CreateCopy", "Book", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-@Html.HiddenFor(m => m.ID)
+        @Html.HiddenFor(mode => mode.ID)
+        @Html.Hidden("BookID", Model.ID)
+    
+        List<SelectListItem> selectList = ViewBag.Statuses;
+        @Html.DropDownList("Statuses", null, new { Name = "StatusID" })
+        <button type="submit" id="submit">Додати</button>
+    }
+</div>

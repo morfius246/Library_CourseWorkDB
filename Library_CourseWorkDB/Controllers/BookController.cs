@@ -79,7 +79,7 @@ namespace Library_CourseWorkDB.Controllers
             Book book = db.Books.Find(id);
             if (book == null)
             {
-                return HttpNotFound();
+                return PartialView(null);
             }
             List<Status> statuses = db.Statuses.ToList();
             List<SelectListItem> selectList = new List<SelectListItem>();
@@ -96,16 +96,16 @@ namespace Library_CourseWorkDB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateCopy(Book book)
+        public ActionResult CreateCopy(BookCopy bookCopy)
         {
             if (ModelState.IsValid)
             {
-                db.Books.Add(book);
+                db.BookCopies.Add(bookCopy);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Details", "Book", new { id = bookCopy.BookID });
             }
 
-            return View(book);
+            return HttpNotFound();
         }
 
         //
@@ -142,7 +142,19 @@ namespace Library_CourseWorkDB.Controllers
             return View(book);
         }
 
-        //
+        public ActionResult DeleteCopy(int id = 0)
+        {
+            string returnUrl = Request.UrlReferrer.AbsoluteUri;
+            BookCopy bookCopy = db.BookCopies.Find(id);
+            if (bookCopy == null)
+            {
+                return HttpNotFound();
+            }
+            db.BookCopies.Remove(bookCopy);
+            db.SaveChanges();
+            return Redirect(returnUrl);
+        }
+        
         // GET: /Book/Delete/5
 
         public ActionResult Delete(int id = 0)
