@@ -364,6 +364,7 @@
     <Content Include="Views\Request\Delete.cshtml" />
     <Content Include="Views\Book\CopyList.cshtml" />
     <Content Include="Views\Book\CreateCopy.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -29,17 +29,50 @@ namespace Library_CourseWorkDB.Controllers
             return View(model);
         }
 
+        public ActionResult Search(string searchBy, string searchString)
+        {
+            try
+            {
+                searchBy = searchBy == "Author" ? "Author" : "Title";
+                List<Book> books = Db.Books.ToList();
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    if(searchBy == "Title")
+                    {
+                        books = books.Where(x => x.Name.ToUpper().Contains(searchString.ToUpper())).ToList();
+                        return View(books.ToList()); 
+                    }
+                    if (searchBy == "Author")
+                    {
+                        List<Book> booksA = new List<Book>();
+                        foreach(var book in books)
+                        {
+                            foreach(var author in book.AuthorsList)
+                            {
+                                if (author.LastName.ToUpper().Contains(searchString.ToUpper()) || author.SecondName.ToUpper().Contains(searchString.ToUpper()) || author.Name.ToUpper().Contains(searchString.ToUpper()))
+                                {
+                                    booksA.Add(book);
+                                }
+                            }
+                        }
+                        return View(booksA.ToList()); 
+                    }
+                }
+                
+            }
+            catch
+            {
+                return HttpNotFound();
+            }
+        }
+
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

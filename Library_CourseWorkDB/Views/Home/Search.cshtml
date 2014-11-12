@@ -1,0 +1,36 @@
+﻿@model List<Library_CourseWorkDB.Models.Book>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search</h2>
+
+@foreach (var item in Model)
+{
+    <div class="book">
+        <div style="float:right">
+            @Html.ActionLink("Просмотреть книгу", "Details", "Book", new { id = item.ID }, new { @class = "btn btn-success" })
+            <div style="float:right; margin-left:4px">
+                @Html.ActionLink(" ", "Edit", "Book", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil" })<br>
+                @Html.ActionLink(" ", "Delete", "Book", new { id = item.ID }, new { @class = "glyphicon glyphicon-remove" })
+            </div>
+        </div>
+        <div style="width: 70%; font-size: large">
+            @Html.DisplayFor(x => item.Name)<br>
+        </div>
+        <div style="width: 70%">
+            @if (item.AuthorsList != null)
+            {
+                foreach (var author in item.AuthorsList)
+                {
+                    <span>author</span><span>/</span>
+                }
+            }
+        </div>
+        <div style="width: 70%">
+            Рік видання: @Html.DisplayFor(x => item.EditionYear) р.<br>
+        </div>
+    </div>
+}

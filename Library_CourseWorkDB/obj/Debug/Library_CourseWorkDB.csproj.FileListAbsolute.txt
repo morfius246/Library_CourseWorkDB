@@ -250,10 +250,11 @@ C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWo
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\ru\System.Spatial.resources.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.csprojResolveAssemblyReference.cache
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.initialCreate.resources
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.ChangedEditionDateToEditionYear.resources
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.UDCAdded.resources
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.addedValidationsToBook.resources
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.csproj.GenerateResource.Cache
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.pdb
-C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.UDCAdded.resources
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.csprojResolveAssemblyReference.cache

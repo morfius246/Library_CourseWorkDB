@@ -16,6 +16,13 @@
                     <li>@Html.ActionLink("Головна", "Index", "Home")</li>
                     <li>@Html.ActionLink("Історія бібліотеки", "About", "Home")</li>
                     <li>@Html.ActionLink("Контакти", "Contact", "Home")</li>
+                    <li>
+                        @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "navbar-right" }))
+                        {
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control input-lg", placeholder = "Поиск...", type = "text" })
+                        }
+                    </li>
+
                 </ul>
 
             </div><!-- /.container-fluid -->
