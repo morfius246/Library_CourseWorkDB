@@ -9,7 +9,9 @@
 <fieldset id="myContainer">
     <legend>Книга
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Delete", "Delete", new { id = Model.ID })
+        @Html.ActionLink("Delete", "Delete", new { id = Model.ID })|
+        @Html.ActionLink("Take", "Create","Request", new { bookId = Model.ID, type = "take" }, null) |
+        @Html.ActionLink("Read", "Create","Request", new { bookId = Model.ID, type = "read" }, null) |
     </legend>
 
     <div class="col1">

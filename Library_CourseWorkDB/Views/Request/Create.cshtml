@@ -3,48 +3,50 @@
 @{
     ViewBag.Title = "Create";
 }
-
+<link href="~/Content/MyStyles.css" rel="stylesheet" />
 <h2>Create</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
+    <fieldset id="myContainer">
         <legend>Request</legend>
+        
+        @Html.HiddenFor(m=>m.ReadingCardID)
+        @Html.HiddenFor(m=>m.InventNumberID)
+        @Html.HiddenFor(m=>m.RequestTypeID)
+        <div class="col1">@Html.DisplayNameFor(m => m.ReadingCardID)</div>
+        <div class="col2">@Html.DisplayFor(m => m.ReadingCard.Name)</div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ReadingCardID, "ReadingCard")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("ReadingCardID", String.Empty)
-            @Html.ValidationMessageFor(model => model.ReadingCardID)
-        </div>
+        <div class="col1">@Html.DisplayNameFor(m => m.BookCopy.BookID)</div>
+        <div class="col2">@Html.DisplayFor(m => m.BookCopy.Book.Name)</div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.InventNumberID, "BookCopy")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("InventNumberID", String.Empty)
-            @Html.ValidationMessageFor(model => model.InventNumberID)
-        </div>
+        <div class="col1">@Html.DisplayNameFor(m => m.RequestTypeID)</div>
+        <div class="col2">@Html.DisplayFor(m => m.RequestType.Name)</div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.RequestTypeID, "RequestType")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("RequestTypeID", String.Empty)
-            @Html.ValidationMessageFor(model => model.RequestTypeID)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
+        <p style="clear: both">
+            <input type="submit" value="Підтвердити" />
         </p>
     </fieldset>
 }
-
+@if (Model.RequestType.Name == "take")
+{
+    <p>
+        Якщо ви замовили в робочий час, то книжку можна забрати вже через 20-30 хвилин, в іншому випадку чекайте до відкриття бібліотеки.
+        Інформацію про графік роботи бібліотеки можна подивитись <a href="#">тут</a>
+    </p>
+}
+else
+{
+    <p>
+        Якщо ви замовили в робочий час, то книжка буде доступною в читальному залі через приблизно 1 годину, в іншому випадку чекайте до відкриття бібліотеки.
+        Інформацію про графік роботи бібліотеки та, зокрема, читального залу, можна подивитись <a href="#">тут</a>
+    </p>
+}
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Назад до книжки", "Details", "Book", new {id=Model.BookCopy.BookID}, null)
 </div>
 
 @section Scripts {

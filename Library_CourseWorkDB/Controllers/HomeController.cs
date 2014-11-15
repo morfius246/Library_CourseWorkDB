@@ -42,23 +42,25 @@ namespace Library_CourseWorkDB.Controllers
                         books = books.Where(x => x.Name.ToUpper().Contains(searchString.ToUpper())).ToList();
                         return View(books.ToList()); 
                     }
-                    if (searchBy == "Author")
+                    else if (searchBy == "Author")
                     {
                         List<Book> booksA = new List<Book>();
-                        foreach(var book in books)
+                        foreach (var book in books)
                         {
-                            foreach(var author in book.AuthorsList)
+                            foreach (var author in book.AuthorsList)
                             {
-                                if (author.LastName.ToUpper().Contains(searchString.ToUpper()) || author.SecondName.ToUpper().Contains(searchString.ToUpper()) || author.Name.ToUpper().Contains(searchString.ToUpper()))
+                                if (author.LastName.ToUpper().Contains(searchString.ToUpper()) ||
+                                    author.SecondName.ToUpper().Contains(searchString.ToUpper()) ||
+                                    author.Name.ToUpper().Contains(searchString.ToUpper()))
                                 {
                                     booksA.Add(book);
                                 }
                             }
                         }
-                        return View(booksA.ToList()); 
+                        return View(booksA.ToList());
                     }
                 }
-                
+                return HttpNotFound();
             }
             catch
             {

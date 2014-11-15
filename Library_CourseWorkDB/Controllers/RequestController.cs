@@ -39,13 +39,33 @@ namespace Library_CourseWorkDB.Controllers
         //
         // GET: /Request/Create
 
-        public ActionResult Create()
+        public ActionResult Create(int bookId = 0, string type = "none")
         {
-            ViewBag.ID = new SelectList(db.ConfirmedRequests, "RequestID", "RequestID");
-            ViewBag.ReadingCardID = new SelectList(db.ReadingCards, "ID", "Name");
-            ViewBag.InventNumberID = new SelectList(db.BookCopies, "InventaryNumber", "InventaryNumber");
-            ViewBag.RequestTypeID = new SelectList(db.RequestTypes, "ID", "Name");
-            return View();
+            Book book = db.Books.Find(bookId);
+            RequestType requestType = db.RequestTypes.FirstOrDefault(r => r.Name == type);
+            ReadingCard readingCard = db.ReadingCards.First(r => r.Name == User.Identity.Name);//change name for passport or login or phone number
+
+            if (book == null || requestType == null || readingCard == null)
+            {
+                return HttpNotFound();
+            }
+            BookCopy bookCopy = book.BookCopies.First(bc => bc.Status.Name == "available");
+            if (bookCopy == null)
+            {
+                return HttpNotFound();
+            }
+
+            var request = new Request
+            {
+                ReadingCard = readingCard,
+                ReadingCardID = readingCard.ID,
+                BookCopy = bookCopy,
+                InventNumberID = bookCopy.InventaryNumber,
+                RequestType = requestType,
+                RequestTypeID = requestType.ID
+            };
+            
+            return View(request);
         }
 
         //
@@ -61,11 +81,6 @@ namespace Library_CourseWorkDB.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.ID = new SelectList(db.ConfirmedRequests, "RequestID", "RequestID", request.ID);
-            ViewBag.ReadingCardID = new SelectList(db.ReadingCards, "ID", "Name", request.ReadingCardID);
-            ViewBag.InventNumberID = new SelectList(db.BookCopies, "InventaryNumber", "InventaryNumber", request.InventNumberID);
-            ViewBag.RequestTypeID = new SelectList(db.RequestTypes, "ID", "Name", request.RequestTypeID);
             return View(request);
         }
 
