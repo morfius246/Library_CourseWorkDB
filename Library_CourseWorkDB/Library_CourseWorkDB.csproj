@@ -365,6 +365,9 @@
     <Content Include="Views\Book\CopyList.cshtml" />
     <Content Include="Views\Book\CreateCopy.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Request\Confirm.cshtml" />
+    <Content Include="Views\Request\Confirmed.cshtml" />
+    <Content Include="Views\Request\Success.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

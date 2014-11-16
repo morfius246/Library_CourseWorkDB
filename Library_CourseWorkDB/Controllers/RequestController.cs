@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Library_CourseWorkDB.Models;
@@ -18,17 +19,22 @@ namespace Library_CourseWorkDB.Controllers
 
         public ActionResult Index()
         {
-            var requests = db.Requests.Include(r => r.ConfirmedRequest).Include(r => r.ReadingCard).Include(r => r.BookCopy).Include(r => r.RequestType);
+            var requests = db.Requests.Where(r=>r.ConfirmedRequest==null).Include(r => r.ConfirmedRequest).Include(r => r.ReadingCard).Include(r => r.BookCopy).Include(r => r.RequestType);
             return View(requests.ToList());
         }
 
+        public ActionResult Confirmed()
+        {
+            var requests = db.ConfirmedRequests;
+            return View(requests.ToList());
+        }
         //
         // GET: /Request/Details/5
 
         public ActionResult Details(int id = 0)
         {
             Request request = db.Requests.Find(id);
-            
+
             if (request == null)
             {
                 return HttpNotFound();
@@ -64,12 +70,9 @@ namespace Library_CourseWorkDB.Controllers
                 RequestType = requestType,
                 RequestTypeID = requestType.ID
             };
-            
+
             return View(request);
         }
-
-        //
-        // POST: /Request/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -84,45 +87,39 @@ namespace Library_CourseWorkDB.Controllers
             return View(request);
         }
 
-        //
-        // GET: /Request/Edit/5
-
-        public ActionResult Edit(int id = 0)
+        public ActionResult Confirm(int id = 0)
         {
             Request request = db.Requests.Find(id);
+
             if (request == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ID = new SelectList(db.ConfirmedRequests, "RequestID", "RequestID", request.ID);
-            ViewBag.ReadingCardID = new SelectList(db.ReadingCards, "ID", "Name", request.ReadingCardID);
-            ViewBag.InventNumberID = new SelectList(db.BookCopies, "InventaryNumber", "InventaryNumber", request.InventNumberID);
-            ViewBag.RequestTypeID = new SelectList(db.RequestTypes, "ID", "Name", request.RequestTypeID);
-            return View(request);
+            return PartialView(request);
         }
-
-        //
-        // POST: /Request/Edit/5
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Request request)
+        public ActionResult Confirm(Request request, string selectedDuration)
         {
-            if (ModelState.IsValid)
+            int durationInMonthes;
+            BookCopy bookCopy = db.BookCopies.Find(request.InventNumberID);
+            if (!int.TryParse(selectedDuration, out durationInMonthes) || durationInMonthes<0 || durationInMonthes>6 || bookCopy == null)
             {
-                db.Entry(request).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return HttpNotFound();
             }
-            ViewBag.ID = new SelectList(db.ConfirmedRequests, "RequestID", "RequestID", request.ID);
-            ViewBag.ReadingCardID = new SelectList(db.ReadingCards, "ID", "Name", request.ReadingCardID);
-            ViewBag.InventNumberID = new SelectList(db.BookCopies, "InventaryNumber", "InventaryNumber", request.InventNumberID);
-            ViewBag.RequestTypeID = new SelectList(db.RequestTypes, "ID", "Name", request.RequestTypeID);
-            return View(request);
-        }
+            ConfirmedRequest confirmedRequest = new ConfirmedRequest(request.ID, durationInMonthes);
 
-        //
-        // GET: /Request/Delete/5
+            request = db.Requests.Find(request.ID);
+            if (request.RequestType.Name == "take")
+                bookCopy.StatusID = db.Statuses.FirstOrDefault(s => s.Name == "givenAway").ID;
+            else if (request.RequestType.Name == "read")
+                bookCopy.StatusID = db.Statuses.FirstOrDefault(s => s.Name == "readingRoom").ID;
+            db.Entry(bookCopy).State = EntityState.Modified;
+            db.ConfirmedRequests.Add(confirmedRequest);
+            db.SaveChanges();
+
+            return PartialView("Success");
+        }
 
         public ActionResult Delete(int id = 0)
         {

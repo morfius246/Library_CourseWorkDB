@@ -1,0 +1,23 @@
+﻿@model Library_CourseWorkDB.Models.Request
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.ID);
+    @Html.HiddenFor(m => m.ReadingCardID);
+    @Html.HiddenFor(m => m.InventNumberID);
+    @Html.HiddenFor(m => m.RequestTypeID);
+    
+    <select name="selectedDuration">
+        <option value="1">1m.</option>
+        <option value="2">2m.</option>
+        <option value="3">3m.</option>
+        <option value="4">4m.</option>
+        <option value="5">5m.</option>
+        <option value="6">6m.</option>
+    </select>
+    <input type="submit" value="Підтвердити"/>
+    
+}

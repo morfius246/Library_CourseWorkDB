@@ -27,5 +27,16 @@ namespace Library_CourseWorkDB.Models
         public int OverduedDays { get; set; }
 
         public virtual Request Request { get; set; }
+
+        public ConfirmedRequest():this(0){}
+
+        public ConfirmedRequest(int requestID = 0, int durationInMonthes = 0, bool isReturned = false, int overduedDays = 0)
+        {
+            RequestID = requestID;
+            GiveAwayDate = DateTime.Now;
+            ReturnDate = DateTime.Now.AddMonths(durationInMonthes);
+            IsReturned = isReturned;
+            OverduedDays = overduedDays;
+        }
     }
 }

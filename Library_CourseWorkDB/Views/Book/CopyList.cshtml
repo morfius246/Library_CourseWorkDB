@@ -18,44 +18,40 @@
         margin: 2px 2px 2px 2px;
         padding: 2px;
     }
-    #partialDisplay:hover {
-        cursor: pointer;
-        background-color: lightskyblue;
-        color: lightseagreen
-            
-    }
+
+        #partialDisplay:hover {
+            cursor: pointer;
+            background-color: lightskyblue;
+            color: lightseagreen;
+        }
 </style>
 
-<fieldset id="myContainer" style="width: 30%">
-    <legend>Екземпляри 
-        @if (Model != null)
-        {
-            int BookID = Model.ElementAt(0).BookID;
-            
-            <span id="partialDisplay">+</span>
-            Html.RenderAction("CreateCopy", "Book", new {id = BookID});
-        }
-    </legend>
-
-    <div class="col1">
-        @Html.DisplayNameFor(model => model.InventaryNumber)
-    </div>
-    <div class="col2" style="width: 20%">
-        @Html.DisplayNameFor(model => model.StatusID)
-    </div>
-
-    @foreach (var item in Model)
-    {
+@if (Model != null && Model.Any())
+{
+    <b>
         <div class="col1">
-            @Html.DisplayFor(modelItem => item.InventaryNumber)
+            @Html.DisplayNameFor(model => model.InventaryNumber)
         </div>
         <div class="col2" style="width: 20%">
-            @Html.DisplayFor(modelItem => item.Status.Name)
+            @Html.DisplayNameFor(model => model.StatusID)
         </div>
-        <div class="col2" style="width: 40%">
-            @Html.ActionLink("Edit", "EditCopy", new { id = item.InventaryNumber }) |
-            @*@Html.ActionLink("Details", "Details", new { id = item.InventaryNumber }) |*@
-            @Html.ActionLink("Delete", "DeleteCopy", new { id = item.InventaryNumber })
-        </div>
+    </b>
+    foreach (var item in Model)
+    {
+    <div class="col1">
+        @Html.DisplayFor(modelItem => item.InventaryNumber)
+    </div>
+    <div class="col2" style="width: 20%">
+        @Html.DisplayFor(modelItem => item.Status.Name)
+    </div>
+    <div class="col2" style="width: 40%">
+        @Html.ActionLink("Edit", "EditCopy", new { id = item.InventaryNumber }) |
+         @*@Html.ActionLink("Details", "Details", new { id = item.InventaryNumber }) |*@
+        @Html.ActionLink("Delete", "DeleteCopy", new { id = item.InventaryNumber })
+    </div>
     }
-</fieldset>
+}
+else
+{
+    <text> Пусто </text>
+}

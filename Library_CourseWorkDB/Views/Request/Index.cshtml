@@ -1,45 +1,63 @@
-﻿@model IEnumerable<Library_CourseWorkDB.Models.Request>
+﻿@using System.Drawing
+@model IEnumerable<Library_CourseWorkDB.Models.Request>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Активні запити</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ReadingCard.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BookCopy.InventaryNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequestType.Name)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReadingCard.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookCopy.InventaryNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestType.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+@if (Model==null || !Model.Any())
+{
+    <text>Пусто</text>
 }
+else
+{
+    <table style="border-spacing: 10px 1px; border-collapse: separate">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookCopy.Book.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReadingCard.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookCopy.InventaryNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestType)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+
+                    @{
+                        String shortName = item.BookCopy.Book.GetShortName();
+            <text>@shortName</text>
+                    }
+
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReadingCard.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookCopy.InventaryNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestType.Name)
+                </td>
+                <td>
+                    @{ Html.RenderAction("Confirm", "Request", new {id = item.ID}); }|
+                    @Html.ActionLink("Details", "Details", new {id = item.ID}) |
+                    @Html.ActionLink("Delete", "Delete", new {id = item.ID})
+                </td>
+            </tr>
+        }
+    </table>
+}

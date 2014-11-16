@@ -10,6 +10,7 @@ namespace Library_CourseWorkDB.Models
     public class ReadingCard
     {
         [Key]
+        [DisplayName("Номер картки читача")]
         public int ID { get; set; }
 
         [DisplayName("Ім'я")]

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Library_CourseWorkDB.Models.ConfirmedRequest>
+
+@{
+    ViewBag.Title = "Confirmed";
+}
+
+<h2>Видані книги</h2>
+<table style="border-collapse: separate; border-spacing: 11px 2px">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GiveAwayDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsReturned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OverduedDays)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            
+            @Html.DisplayFor(modelItem => item.GiveAwayDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReturnDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsReturned)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OverduedDays)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RequestID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RequestID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RequestID })
+        </td>
+    </tr>
+}
+
+</table>

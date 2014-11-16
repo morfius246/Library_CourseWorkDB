@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 
 namespace Library_CourseWorkDB.Models
@@ -37,6 +38,19 @@ namespace Library_CourseWorkDB.Models
         public virtual UDC UDC { get; set; }
         public virtual ICollection<Author> AuthorsList { get; set; }
         public virtual ICollection<BookCopy> BookCopies { get; set; }
+
+        public string GetShortName(int length = 22)
+        {
+            if (Name == null)
+            {
+                return "error";
+            }
+            else if (Name.Length > length+3)
+            {
+                return String.Concat(Name.Substring(0, length), "...");
+            }
+            else return Name;
+        }
 
         public bool isDateValid()
         {
