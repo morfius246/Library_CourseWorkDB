@@ -19,8 +19,16 @@
     }
 </style>
 <div style="margin: 0 auto">
+   
     <div id="list-group" style="width:20%; float:left; margin:1%; margin-top:0.5%">
-        <a href="@Url.Action("Index", "Home")" class="list-group-item">Все</a>
+        <a class="list-group-item" style="height:60px">
+            @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "navbar" }))
+            {
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Поиск...", type = "text" })
+            }
+        </a>
+        <a href="@Url.Action("Index", "Home")" class="list-group-item"><h4>Все</h4></a>
+        
         @foreach (var category in Model.CategoryList)
         {
             <a class="list-group-item" href="@Url.Action("Index", "Home", new { categoryCode = category.Code })">
@@ -31,8 +39,8 @@
     
 @if (User.IsInRole("Librarian") || 1 == 1)//REMOVE 1==1 ADD STYLES
 {
-    <div>
-         @Html.ActionLink("Create New", "Create", "Book",null, new { @class = "btn btn-default" })
+    <div style="width:20%; float:left; margin:1%; margin-top:0.5%">
+        @Html.ActionLink("Добавить новую книгу", "Create", "Book", null, new { @class = "btn btn-default" })
     </div>
 }
     

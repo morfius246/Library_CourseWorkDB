@@ -1,14 +1,22 @@
-﻿@if (Request.IsAuthenticated) {
+﻿@if (Request.IsAuthenticated)
+{
     <text>
-        Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
-        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
-            @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-        }
+        <li>
+            <div style="margin-top:15px">
+            <a href=@Url.Action("ShowUser", "Account", new { id = WebSecurity.GetUserId(User.Identity.Name) }) style="padding: 0; margin: 0; outline-style: none">
+                @User.Identity.Name
+            </a>
+                </div>
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
     </text>
-} else {
-    <ul>
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "", style = "outline-style: none" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+}
+else
+{
+    <li><a href="/Account/Register" id="registerLink" style="outline-style: none">Регистрация</a></li>
+    <li><a href="/Account/Login" id="loginLink" style="outline-style: none">Войти</a></li>
 }

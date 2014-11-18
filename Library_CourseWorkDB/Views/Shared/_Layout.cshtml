@@ -10,21 +10,15 @@
 </head>
 <body style=" margin:0 auto;max-width:1500px; min-width:1000px">
     <header>
-        <nav class="navbar navbar-default" style="min-width:1000px; margin:0 auto;">
-            <div class="container-fluid" style="min-width:1000px;">
-                <ul class="nav navbar-nav" style="min-width:1000px;">
+        <nav class="navbar navbar-default" style="min-width:1000px; margin:0 auto">
+            <div class="container-fluid" style="min-width:1000px; margin: 0 auto">
+                <ul class="nav navbar-nav" style="min-width:1000px; margin: 0 auto">
                     <li>@Html.ActionLink("Головна", "Index", "Home")</li>
                     <li>@Html.ActionLink("Запити", "Index", "Request")</li>
                     <li>@Html.ActionLink("Видані", "Confirmed", "Request")</li>
-                    <li>@Html.ActionLink("Історія бібліотеки", "About", "Home")</li>
-                    <li>@Html.ActionLink("Контакти", "Contact", "Home")</li>
-                    <li>
-                        @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "navbar-right" }))
-                        {
-                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control input-lg", placeholder = "Поиск...", type = "text" })
-                        }
-                    </li>
-
+                    <!--<li>@Html.ActionLink("Історія бібліотеки", "About", "Home")</li>
+                    <li>@Html.ActionLink("Контакти", "Contact", "Home")</li>-->
+                    @Html.Partial("_LoginPartial")
                 </ul>
 
             </div><!-- /.container-fluid -->

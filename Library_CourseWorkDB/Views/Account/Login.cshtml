@@ -1,50 +1,41 @@
 ﻿@model Library_CourseWorkDB.Models.LoginModel
-
-@{
-    ViewBag.Title = "Log in";
-}
-
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
-
-<section id="loginForm">
-<h2>Use a local account to log in.</h2>
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Log in Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
-                @Html.ValidationMessageFor(m => m.UserName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-            </li>
-            <li>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-            </li>
-        </ol>
-        <input type="submit" value="Log in" />
-    </fieldset>
-    <p>
-        @Html.ActionLink("Register", "Register") if you don't have an account.
-    </p>
-}
-</section>
-
-<section class="social" id="socialLoginForm">
-    <h2>Use another service to log in.</h2>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<hgroup class="title"></hgroup>
+<div class="row" style="margin:0 auto">
+    <div style="margin:0 auto">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", @style = "margin:0 auto; width:400px" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <br>
+            <div class="form-group">
+                <div >
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Логин" })
+                    @Html.ValidationMessageFor(model => model.UserName, null, new { style = "color:red" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    @Html.PasswordFor(m => m.Password, new { placeholder = "Пароль", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Password, null, new { style = "color:red" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(m => m.RememberMe) Запомнить меня
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <button type="submit" class="btn btn-primary">Войти</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
