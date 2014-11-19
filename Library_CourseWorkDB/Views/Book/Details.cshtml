@@ -4,17 +4,15 @@
     ViewBag.Title = "Книга";
 }
 <link href="~/Content/MyStyles.css" rel="stylesheet" />
-<h2>Сторінка книжки</h2>
-<p>@Html.ActionLink("Back to List", "Index", "Home")</p>
 <fieldset id="myContainer">
     <legend>Книга
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = Model.ID })|
+        @Html.ActionLink(" ", "Edit", new { id = Model.ID}, new{ @class = "glyphicon glyphicon-pencil" })
+        @Html.ActionLink(" ", "Delete", new { id = Model.ID}, new{ @class = "glyphicon glyphicon-remove" })
         @if (Model.BookCopies.Any(bc => bc.Status.Name == "available"))
         {
-            Html.ActionLink("Take", "Create", "Request", new {bookId = Model.ID, type = "take"}, null);
+            Html.ActionLink("Взять домой", "Create", "Request", new {bookId = Model.ID, type = "take"}, null);
             <span>|</span>
-            Html.ActionLink("Read", "Create", "Request", new {bookId = Model.ID, type = "read"}, null);
+            Html.ActionLink("Читать в зале", "Create", "Request", new {bookId = Model.ID, type = "read"}, null);
             <span>|</span>
         }
         else
