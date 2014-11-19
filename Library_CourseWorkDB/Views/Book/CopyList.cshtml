@@ -13,29 +13,24 @@
 
 <style>
     #partialDisplay {
-        background-color: lightblue;
         border-radius: 3px;
-        margin: 2px 2px 2px 2px;
+        margin: 4px 2px 2px 2px;
         padding: 2px;
     }
 
         #partialDisplay:hover {
             cursor: pointer;
-            background-color: lightskyblue;
-            color: lightseagreen;
         }
 </style>
 
 @if (Model != null && Model.Any())
 {
-    <b>
         <div class="col1">
-            @Html.DisplayNameFor(model => model.InventaryNumber)
+            <b>@Html.DisplayNameFor(model => model.InventaryNumber)</b>
         </div>
         <div class="col2" style="width: 20%">
-            @Html.DisplayNameFor(model => model.StatusID)
+            <b>@Html.DisplayNameFor(model => model.StatusID)</b>
         </div>
-    </b>
     foreach (var item in Model)
     {
     <div class="col1">
@@ -45,9 +40,8 @@
         @Html.DisplayFor(modelItem => item.Status.Name)
     </div>
     <div class="col2" style="width: 40%">
-        @Html.ActionLink("Edit", "EditCopy", new { id = item.InventaryNumber }) |
-         @*@Html.ActionLink("Details", "Details", new { id = item.InventaryNumber }) |*@
-        @Html.ActionLink("Delete", "DeleteCopy", new { id = item.InventaryNumber })
+        @Html.ActionLink(" ", "EditCopy", new { id = item.InventaryNumber }, new { @class = "glyphicon glyphicon-pencil" })
+        @Html.ActionLink(" ", "DeleteCopy", new { id = item.InventaryNumber }, new { @class = "glyphicon glyphicon-remove" })
     </div>
     }
 }

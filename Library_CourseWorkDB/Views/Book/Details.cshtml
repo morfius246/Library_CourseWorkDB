@@ -4,67 +4,75 @@
     ViewBag.Title = "Книга";
 }
 <link href="~/Content/MyStyles.css" rel="stylesheet" />
-<fieldset id="myContainer">
-    <legend>Книга
-        @Html.ActionLink(" ", "Edit", new { id = Model.ID}, new{ @class = "glyphicon glyphicon-pencil" })
-        @Html.ActionLink(" ", "Delete", new { id = Model.ID}, new{ @class = "glyphicon glyphicon-remove" })
-        @if (Model.BookCopies.Any(bc => bc.Status.Name == "available"))
-        {
-            Html.ActionLink("Взять домой", "Create", "Request", new {bookId = Model.ID, type = "take"}, null);
-            <span>|</span>
-            Html.ActionLink("Читать в зале", "Create", "Request", new {bookId = Model.ID, type = "read"}, null);
-            <span>|</span>
-        }
-        else
-        {
-            <span>Немає доступних</span>
-        }
-    </legend>
+<div style="background-color:#F8F8F8; padding:10px;  border-radius:10px; max-width:50%; margin:0 auto;margin-top:20px">
+    <div style="max-width:100%; margin:0 auto">
+        <fieldset id="myContainer">
+            <legend>
+                @if (Model.BookCopies.Any(bc => bc.Status.Name == "available"))
+                {
+                    @Html.ActionLink("Взять домой", "Create", "Request", new { bookId = Model.ID, type = "take" }, new { @class = "btn btn-default", @style = "margin:5px" });
+                    @Html.ActionLink("Читать в зале", "Create", "Request", new { bookId = Model.ID, type = "read" }, new { @class = "btn btn-default", @style = "margin:5px" });
+                }
+                else
+                {
+                    <span>Немає доступних</span>
+                }
+                @Html.ActionLink(" ", "Edit", new { id = Model.ID }, new { @class = "glyphicon glyphicon-pencil" })
+                @Html.ActionLink(" ", "Delete", new { id = Model.ID }, new { @class = "glyphicon glyphicon-remove" })
+            </legend>
+            <div style="float:right; ">
 
-    <div class="col1">
-        @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="col2">
-        @Html.DisplayFor(model => model.Name)
-    </div>
+            </div>
+            <div class="col1">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+            <div class="col2">
+                @Html.DisplayFor(model => model.Name)
+            </div>
 
-    <div class="col1">
-        @Html.DisplayNameFor(model => model.UDC)
-    </div>
-    <div class="col2">
-        @Html.DisplayFor(model => model.UDC.Code)
-    </div>
+            <div class="col1">
+                @Html.DisplayNameFor(model => model.UDC)
+            </div>
+            <div class="col2">
+                @Html.DisplayFor(model => model.UDC.Code)
+            </div>
 
-    <div class="col1">
-        @Html.DisplayNameFor(model => model.EditionYear)
-    </div>
-    <div class="col2">
-        @Html.DisplayFor(model => model.EditionYear)
-    </div>
+            <div class="col1">
+                @Html.DisplayNameFor(model => model.EditionYear)
+            </div>
+            <div class="col2">
+                @Html.DisplayFor(model => model.EditionYear)
+            </div>
 
-    <div class="col1">
-        @Html.DisplayNameFor(model => model.Publishing)
+            <div class="col1">
+                @Html.DisplayNameFor(model => model.Publishing)
+            </div>
+            <div class="col2">
+                @Html.DisplayFor(model => model.Publishing)
+            </div>
+
+            <div class="col1">
+                @Html.DisplayNameFor(model => model.Pages)
+            </div>
+            <div class="col2">
+                @Html.DisplayFor(model => model.Pages)
+            </div>
+        </fieldset>
+        <div style="background-color:white;padding:10px; margin-top:20px; border-radius:10px">
+            <fieldset id="myContainer">
+                <legend>
+                    Екземпляри
+                    <a id="partialDisplay" class="glyphicon glyphicon-plus"></a>
+                    @Html.ActionLink("В читальном зале", "Sort", new { stutus = "readingRoom" }, new { @class = "btn btn-default", @style = "margin:5px" })
+                    @Html.ActionLink("На руках", "Sort", new { stutus = "givenAway" }, new { @class = "btn btn-default", @style = "margin:5px" })
+                    @Html.ActionLink("Доступные", "Sort", new { stutus = "available" }, new { @class = "btn btn-default", @style = "margin:5px" })
+                    @{ Html.RenderAction("CreateCopy", "Book", new { id = Model.ID }); }
+                </legend>
+
+                @{ Html.RenderAction("CopyList", "Book"); }
+
+            </fieldset>
+        </div>
     </div>
-    <div class="col2">
-        @Html.DisplayFor(model => model.Publishing)
     </div>
-
-    <div class="col1">
-        @Html.DisplayNameFor(model => model.Pages)
-    </div>
-    <div class="col2">
-        @Html.DisplayFor(model => model.Pages)
-    </div>
-</fieldset>
-
-<fieldset id="myContainer" style="width: 30%">
-    <legend>Екземпляри         
-            <span id="partialDisplay">+</span>
-        @{ Html.RenderAction("CreateCopy", "Book", new {id = Model.ID}); }
-    </legend>
-
-    @{ Html.RenderAction("CopyList", "Book"); }
-
-</fieldset>
-
 
