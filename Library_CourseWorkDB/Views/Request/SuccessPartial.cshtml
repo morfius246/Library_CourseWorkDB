@@ -1,0 +1,8 @@
+﻿@model string
+@{
+    Layout = null;
+}
+<span style="color: green">Готово
+    @Html.ActionLink("Pdf", "GetPdf","Request", new { pdfName = Model }, new { target = "_blank" })
+</span>
+

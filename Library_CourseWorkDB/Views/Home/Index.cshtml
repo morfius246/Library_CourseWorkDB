@@ -58,12 +58,22 @@
             @Html.DisplayFor(x => item.Name)<br>
         </div>
         <div style="width: 70%">
-            @if (item.AuthorsList != null)
+            @if (item.AuthorsList != null && item.AuthorsList.Count>0)
             {
+                int count=0;
                 foreach (var author in item.AuthorsList)
                 {
-                        <span>author</span><span>/</span>
+                    <span>@author.GetShortName()</span>
+                    count++;
+                    if (count < item.AuthorsList.Count)
+                    {
+                        <span>/</span>
+                    }
                 }
+            }
+            else
+            {
+                <span>Немає авторів</span>
             }
         </div>
         <div style="width: 70%">

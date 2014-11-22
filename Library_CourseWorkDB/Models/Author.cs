@@ -23,5 +23,34 @@ namespace Library_CourseWorkDB.Models
         public string SecondName { get; set; }
 
         public virtual ICollection<Book> BooksList { get; set; }
+
+        public string GetShortName()
+        {
+            string shortName = null;
+            if (LastName != null)
+            {
+                shortName += LastName;
+            }
+            else
+            {
+                return "noName";
+            }
+
+            if (Name != null)
+            {
+                shortName += " " + char.ToUpper(Name[0]);
+            }
+            else
+            {
+                return "noSurname";
+            }
+
+            if (SecondName != null)
+            {
+                shortName += "." + char.ToUpper(SecondName[0]) + ".";
+            }
+
+            return shortName;
+        }
     }
 }

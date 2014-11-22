@@ -6,10 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using Library_CourseWorkDB.BAL;
 using Library_CourseWorkDB.Models;
+using Rotativa;
 
 namespace Library_CourseWorkDB.Controllers
 {
+    [Authorize]
     public class RequestController : Controller
     {
         private HomeContext db = new HomeContext();
@@ -95,7 +99,7 @@ namespace Library_CourseWorkDB.Controllers
             {
                 return HttpNotFound();
             }
-            return PartialView(request);
+            return PartialView("ConfirmPartial", request);
         }
 
         [HttpPost]
@@ -118,7 +122,9 @@ namespace Library_CourseWorkDB.Controllers
             db.ConfirmedRequests.Add(confirmedRequest);
             db.SaveChanges();
 
-            return PartialView("Success");
+
+
+            return PartialView("SuccessPartial");
         }
 
         public ActionResult Delete(int id = 0)
@@ -142,6 +148,11 @@ namespace Library_CourseWorkDB.Controllers
             db.Requests.Remove(request);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult GetPdf(string pdfName)
+        {
+            return File(PdfManager.AppPath+"\\Pdf\\"+"test.pdf", "application/pdf");
         }
 
         protected override void Dispose(bool disposing)
