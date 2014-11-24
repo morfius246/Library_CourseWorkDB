@@ -27,7 +27,7 @@
                 @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Поиск...", type = "text" })
             }
         </a>
-        <a href="@Url.Action("Index", "Home")" class="list-group-item"><h4>Все</h4></a>
+        <a href="@Url.Action("Index", "Home")" class="list-group-item" style="height:60px; padding-top:0px"><h3>Все</h3></a>
         
         @foreach (var category in Model.CategoryList)
         {
