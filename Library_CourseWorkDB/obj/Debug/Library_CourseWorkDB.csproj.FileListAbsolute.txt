@@ -263,3 +263,12 @@ C:\Users\klok\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\EPP
 C:\Users\klok\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\itextsharp.xml
 C:\Users\klok\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\PdfRpt.xml
 C:\Users\klok\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Rotativa.dll
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\EPPlus.dll
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\itextsharp.dll
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\itextsharp.pdfa.dll
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\itextsharp.xmlworker.dll
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\PdfRpt.dll
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Rotativa.dll
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\EPPlus.xml
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\itextsharp.xml
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\PdfRpt.xml

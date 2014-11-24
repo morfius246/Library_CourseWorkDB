@@ -10,23 +10,25 @@ using System.Web.Security;
 using Library_CourseWorkDB.BAL;
 using Library_CourseWorkDB.Models;
 using Rotativa;
+using Library_CourseWorkDB.Filters;
 
 namespace Library_CourseWorkDB.Controllers
 {
     [Authorize]
+    [InitializeSimpleMembership]
     public class RequestController : Controller
     {
         private HomeContext db = new HomeContext();
 
         //
         // GET: /Request/
-
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Index()
         {
             var requests = db.Requests.Where(r=>r.ConfirmedRequest==null).Include(r => r.ConfirmedRequest).Include(r => r.ReadingCard).Include(r => r.BookCopy).Include(r => r.RequestType);
             return View(requests.ToList());
         }
-
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Confirmed()
         {
             var requests = db.ConfirmedRequests;
@@ -34,7 +36,7 @@ namespace Library_CourseWorkDB.Controllers
         }
         //
         // GET: /Request/Details/5
-
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Details(int id = 0)
         {
             Request request = db.Requests.Find(id);
@@ -48,7 +50,7 @@ namespace Library_CourseWorkDB.Controllers
 
         //
         // GET: /Request/Create
-
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Create(int bookId = 0, string type = "none")
         {
             Book book = db.Books.Find(bookId);
@@ -80,6 +82,7 @@ namespace Library_CourseWorkDB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Create(Request request)
         {
             if (ModelState.IsValid)
@@ -90,7 +93,7 @@ namespace Library_CourseWorkDB.Controllers
             }
             return View(request);
         }
-
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Confirm(int id = 0)
         {
             Request request = db.Requests.Find(id);
@@ -103,6 +106,7 @@ namespace Library_CourseWorkDB.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Confirm(Request request, string selectedDuration)
         {
             int durationInMonthes;
@@ -126,7 +130,7 @@ namespace Library_CourseWorkDB.Controllers
 
             return PartialView("SuccessPartial");
         }
-
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Delete(int id = 0)
         {
             Request request = db.Requests.Find(id);
@@ -142,6 +146,7 @@ namespace Library_CourseWorkDB.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult DeleteConfirmed(int id)
         {
             Request request = db.Requests.Find(id);
@@ -149,12 +154,13 @@ namespace Library_CourseWorkDB.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult GetPdf(string pdfName)
         {
             return File(PdfManager.AppPath+"\\Pdf\\"+"test.pdf", "application/pdf");
         }
 
+        [Authorize(Roles = "Admin, Librarian")]
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

@@ -6,16 +6,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Library_CourseWorkDB.Models;
+using Library_CourseWorkDB.Filters;
 
 namespace Library_CourseWorkDB.Controllers
 {
+    [Authorize]
+    [InitializeSimpleMembership]
     public class BookController : Controller
     {
         private HomeContext db = new HomeContext();
 
         //
         // GET: /Book/
-
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return RedirectToAction("Index", "Home");
@@ -23,7 +26,7 @@ namespace Library_CourseWorkDB.Controllers
 
         //
         // GET: /Book/Details/5
-
+        [AllowAnonymous]
         public ActionResult Details(int id = 0)
         {
             Book book = db.Books.Find(id);
@@ -36,7 +39,7 @@ namespace Library_CourseWorkDB.Controllers
 
         //
         // GET: /Book/Create
-
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +50,7 @@ namespace Library_CourseWorkDB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Create(Book book)
         {
             if (!book.isDateValid())
@@ -63,7 +67,7 @@ namespace Library_CourseWorkDB.Controllers
 
             return View(book);
         }
-
+        [AllowAnonymous]
         public ActionResult CopyList(int id = 0)
         {
             Book book = db.Books.Find(id);
@@ -73,7 +77,7 @@ namespace Library_CourseWorkDB.Controllers
             }
             return PartialView(book.BookCopies);
         }
-
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult CreateCopy(int id = 0)
         {
             Book book = db.Books.Find(id);
@@ -96,6 +100,7 @@ namespace Library_CourseWorkDB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult CreateCopy(BookCopy bookCopy)
         {
             if (ModelState.IsValid)
@@ -110,7 +115,7 @@ namespace Library_CourseWorkDB.Controllers
 
         //
         // GET: /Book/Edit/5
-
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Edit(int id = 0)
         {
             Book book = db.Books.Find(id);
@@ -126,6 +131,7 @@ namespace Library_CourseWorkDB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Edit(Book book)
         {
             if (!book.isDateValid())
@@ -141,7 +147,7 @@ namespace Library_CourseWorkDB.Controllers
             }
             return View(book);
         }
-
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult DeleteCopy(int id = 0)
         {
             string returnUrl = Request.UrlReferrer.AbsoluteUri;
@@ -156,7 +162,7 @@ namespace Library_CourseWorkDB.Controllers
         }
         
         // GET: /Book/Delete/5
-
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Delete(int id = 0)
         {
             Book book = db.Books.Find(id);
@@ -172,6 +178,7 @@ namespace Library_CourseWorkDB.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult DeleteConfirmed(int id)
         {
             Book book = db.Books.Find(id);

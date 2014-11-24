@@ -10,11 +10,13 @@ using System.Web.Mvc;
 
 namespace Library_CourseWorkDB.Controllers
 {
+    [Authorize]
     [InitializeSimpleMembership]
     public class HomeController : Controller
     {
         protected HomeContext Db = new HomeContext();
         Main model = new Main();
+        [AllowAnonymous]
         public ActionResult Index(String categoryCode)
         {
             ReadingCard readingCard = Db.ReadingCards.Where(rc => rc.Name == "Borys").First();
@@ -36,7 +38,7 @@ namespace Library_CourseWorkDB.Controllers
             }
             return View(model);
         }
-
+        [AllowAnonymous]
         public ActionResult Search(string searchBy, string searchString)
         {
             try
@@ -75,12 +77,12 @@ namespace Library_CourseWorkDB.Controllers
                 return HttpNotFound();
             }
         }
-
+        [AllowAnonymous]
         public ActionResult About()
         {
             return View();
         }
-
+        [AllowAnonymous]
         public ActionResult Contact()
         {
             return View();
