@@ -1,0 +1,71 @@
+﻿@using Library_CourseWorkDB.Models
+@model Library_CourseWorkDB.Models.Book
+@{
+    ViewBag.Title = "Authors";
+}
+
+<link href="~/Content/MyStyles.css" rel="stylesheet" />
+
+<h2>Authors</h2>
+<fieldset id="myContainer">
+    <legend>Книга</legend>
+    <div class="col1">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="col2">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="col1">
+        @Html.DisplayNameFor(model => model.UDC)
+    </div>
+    <div class="col2">
+        @Html.DisplayFor(model => model.UDC.Code)
+    </div>
+
+    <div class="col1">
+        @Html.DisplayNameFor(model => model.EditionYear)
+    </div>
+    <div class="col2">
+        @Html.DisplayFor(model => model.EditionYear)
+    </div>
+
+    <div class="col1">
+        @Html.DisplayNameFor(model => model.Publishing)
+    </div>
+    <div class="col2">
+        @Html.DisplayFor(model => model.Publishing)
+    </div>
+
+    <div class="col1">
+        @Html.DisplayNameFor(model => model.Pages)
+    </div>
+    <div class="col2">
+        @Html.DisplayFor(model => model.Pages)
+    </div>
+    <p style="clear: both"></p>
+    <fieldset id="myContainer">
+        <legend>Список авторів</legend>
+        @if (Model.AuthorsList != null)
+        {
+            int i = 1;
+            foreach (Author author in Model.AuthorsList)
+            {
+                
+            <div class="col1" style="width: 200px">@i . @author.GetShortName()</div>
+                if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
+                {
+                <div class="col2">@Html.ActionLink("X", "RemoveAuthor", new { id = author.ID, bookId = Model.ID }) </div>
+                }
+                i++;
+            }
+        }
+        else
+        {
+            <p>Немає авторів</p>
+        }
+    </fieldset>
+
+    @{ Html.RenderAction("AddAuthor"); }
+
+</fieldset>

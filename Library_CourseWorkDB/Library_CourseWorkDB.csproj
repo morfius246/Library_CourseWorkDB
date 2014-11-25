@@ -395,6 +395,9 @@
     <Content Include="Views\Request\ConfirmPartial.cshtml" />
     <Content Include="Views\Request\Confirmed.cshtml" />
     <Content Include="Views\Request\SuccessPartial.cshtml" />
+    <Content Include="Views\Book\Authors.cshtml" />
+    <Content Include="Views\Book\AddAuthor.cshtml" />
+    <Content Include="Views\Book\AuthorListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

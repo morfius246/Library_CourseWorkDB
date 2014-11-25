@@ -1,0 +1,23 @@
+﻿@model Book
+@using Library_CourseWorkDB.Models
+<fieldset id="myContainer">
+        <legend>Список авторів</legend>
+        @if (Model.AuthorsList != null)
+        {
+            int i = 1;
+            foreach (Author author in Model.AuthorsList)
+            {
+                
+            <div class="col1" style="width: 200px">@i . @author.GetShortName()</div>
+                if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
+                {
+                <div class="col2">@Html.ActionLink("X", "RemoveAuthor", new { id = author.ID, bookId = Model.ID }) </div>
+                }
+                i++;
+            }
+        }
+        else
+        {
+            <p>Немає авторів</p>
+        }
+    </fieldset>

@@ -25,19 +25,31 @@
 
 @if (Model != null && Model.Any())
 {
-        <div class="col1">
-            <b>@Html.DisplayNameFor(model => model.InventaryNumber)</b>
-        </div>
-        <div class="col2" style="width: 20%">
-            <b>@Html.DisplayNameFor(model => model.StatusID)</b>
-        </div>
+    <div class="col1" style="width: 20%">
+        <b>@Html.DisplayNameFor(model => model.InventaryNumber)</b>
+    </div>
+    <div class="col2" style="width: 22%">
+        <b>@Html.DisplayNameFor(model => model.StatusID)</b>
+    </div>
     foreach (var item in Model)
     {
-    <div class="col1">
+    <div class="col1" style="width: 20%">
         @Html.DisplayFor(modelItem => item.InventaryNumber)
     </div>
-    <div class="col2" style="width: 20%">
-        @Html.DisplayFor(modelItem => item.Status.Name)
+    <div class="col2" style="width: 22%">
+
+        @if (item.Status.Name == "available")
+        {
+            <span style="color:green">Доступий</span>
+        }
+        else if (item.Status.Name == "readingRoom")
+        {
+            <span style="color:orange">Чит. зал</span>
+        }
+        else if (item.Status.Name == "givenAway")
+        {
+            <span style="color: orangered">Виданий</span>
+        }
     </div>
     <div class="col2" style="width: 40%">
         @Html.ActionLink(" ", "EditCopy", new { id = item.InventaryNumber }, new { @class = "glyphicon glyphicon-pencil" })

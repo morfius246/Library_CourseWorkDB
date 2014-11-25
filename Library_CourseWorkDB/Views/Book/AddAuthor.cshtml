@@ -1,0 +1,11 @@
+﻿@model Library_CourseWorkDB.Models.Author
+
+@using (@Html.BeginForm("AddAuthor", "Book", FormMethod.Post, null))
+{
+    <input type="text" name="bookId" id="bookId" value="@ViewBag.bookId" hidden="true"/>
+    <input type="text" name="calledFrom" value="@ViewBag.calledFrom" hidden="true"/>
+
+    @Html.DropDownList("author")
+
+    <input type="submit" value="Додати автора"/>
+}
