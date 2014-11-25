@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.Services.Description;
 using Library_CourseWorkDB.Models;
 using Library_CourseWorkDB.Filters;
@@ -19,16 +20,14 @@ namespace Library_CourseWorkDB.Controllers
     {
         private HomeContext db = new HomeContext();
 
-        //
-        // GET: /Book/
         [AllowAnonymous]
         public ActionResult Index()
         {
             return RedirectToAction("Index", "Home");
         }
 
-        //
-        // GET: /Book/Details/5
+
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Details(int id = 0)
         {
@@ -40,16 +39,14 @@ namespace Library_CourseWorkDB.Controllers
             return View(book);
         }
 
-        //
-        // GET: /Book/Create
+
+        [HttpGet]
         [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Create()
         {
             return View();
         }
 
-        //
-        // POST: /Book/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -150,6 +147,7 @@ namespace Library_CourseWorkDB.Controllers
             return RedirectToAction("Edit", new {id = bookId});
         }
 
+        [ChildActionOnly]
         [AllowAnonymous]
         public ActionResult CopyList(int id = 0)
         {
@@ -160,6 +158,8 @@ namespace Library_CourseWorkDB.Controllers
             }
             return PartialView(book.BookCopies);
         }
+
+
         [Authorize(Roles = "Admin, Librarian")]
         public ActionResult CreateCopy(int id = 0)
         {
@@ -178,8 +178,6 @@ namespace Library_CourseWorkDB.Controllers
             return PartialView(book);
         }
 
-        //
-        // POST: /Book/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]

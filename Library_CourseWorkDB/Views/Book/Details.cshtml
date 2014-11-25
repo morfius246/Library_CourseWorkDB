@@ -4,11 +4,10 @@
     ViewBag.Title = "Книга";
 }
 <link href="~/Content/MyStyles.css" rel="stylesheet" />
-<div style="background-color:#F8F8F8; padding:10px;  border-radius:10px; max-width:50%; margin:0 auto;margin-top:20px">
-    <div style="max-width:100%; margin:0 auto">
+<div style="background-color: #F8F8F8; padding: 10px; border-radius: 10px; max-width: 50%; margin: 0 auto; margin-top: 20px">
+    <div style="max-width: 100%; margin: 0 auto">
         <fieldset id="myContainer">
-            <legend>
-                Книга
+            <legend>Книга
                 @if (Model.BookCopies.Any(bc => bc.Status.Name == "available"))
                 {
                     @Html.ActionLink("Взять домой", "Create", "Request", new { bookId = Model.ID, type = "take" }, new { @class = "btn btn-default", @style = "margin:5px" });
@@ -21,8 +20,7 @@
                 @Html.ActionLink(" ", "Edit", new { id = Model.ID }, new { @class = "glyphicon glyphicon-pencil" })
                 @Html.ActionLink(" ", "Delete", new { id = Model.ID }, new { @class = "glyphicon glyphicon-remove" })
             </legend>
-            <div style="float:right; ">
-
+            <div style="float: right;">
             </div>
             <div class="col1">
                 @Html.DisplayNameFor(model => model.Name)
@@ -59,22 +57,27 @@
                 @Html.DisplayFor(model => model.Pages)
             </div>
         </fieldset>
+        @if (User.IsInRole("Admin, Librarian"))
+        {
+            <div style="background-color: white; padding: 10px; margin-top: 20px; border-radius: 10px">
+                <fieldset id="myContainer">
+                    <legend>Екземпляри
+                    
+                         <a id="partialDisplay" class="glyphicon glyphicon-plus"></a>
 
-        <div style="background-color:white;padding:10px; margin-top:20px; border-radius:10px">
-            <fieldset id="myContainer">
-                <legend>
-                    Екземпляри
-                    <a id="partialDisplay" class="glyphicon glyphicon-plus"></a>
-                    @Html.ActionLink("В читальном зале", "Sort", new { stutus = "readingRoom" }, new { @class = "btn btn-default", @style = "margin:5px" })
-                    @Html.ActionLink("На руках", "Sort", new { stutus = "givenAway" }, new { @class = "btn btn-default", @style = "margin:5px" })
-                    @Html.ActionLink("Доступные", "Sort", new { stutus = "available" }, new { @class = "btn btn-default", @style = "margin:5px" })
-                    @{ Html.RenderAction("CreateCopy", "Book", new { id = Model.ID }); }
-                </legend>
+                        @Html.ActionLink("В читальном зале", "Sort", new { stutus = "readingRoom" }, new { @class = "btn btn-default", @style = "margin:5px" })
+                        @Html.ActionLink("На руках", "Sort", new { stutus = "givenAway" }, new { @class = "btn btn-default", @style = "margin:5px" })
+                        @Html.ActionLink("Доступные", "Sort", new { stutus = "available" }, new { @class = "btn btn-default", @style = "margin:5px" })
 
-                @{ Html.RenderAction("CopyList", "Book"); }
+                        @{ Html.RenderAction("CreateCopy", "Book", new {id = Model.ID}); }
+                         
+                    </legend>
 
-            </fieldset>
-        </div>
+                    @{ Html.RenderAction("CopyList", "Book"); }
+
+                </fieldset>
+            </div>
+        }
     </div>
-    </div>
+</div>
 
