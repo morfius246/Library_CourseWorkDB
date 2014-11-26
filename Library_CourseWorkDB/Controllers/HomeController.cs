@@ -38,12 +38,45 @@ namespace Library_CourseWorkDB.Controllers
             }
             return View(model);
         }
+        public bool IsContainsLN(string searchString, Author author)
+        {
+            if (author.LastName != null)
+            {
+                if (author.LastName.ToUpper().Contains(searchString.ToUpper()))
+                {
+                    return true;
+                }
+                else return false;
+            }
+            else return false;
+        }
+        public bool IsContainsSN(string searchString, Author author)
+        {
+            if (author.SecondName != null)
+            {
+                if (author.SecondName.ToUpper().Contains(searchString.ToUpper()))
+                {
+                    return true;
+                }
+                else return false;
+            }
+            else return false;
+        }
+        public bool IsContainsN(string searchString, Author author)
+        {
+            if (author.Name != null)
+            {
+                if (author.Name.ToUpper().Contains(searchString.ToUpper()))
+                {
+                    return true;
+                }
+                else return false;
+            }
+            else return false;
+        }
         [AllowAnonymous]
         public ActionResult Search(string searchBy, string searchString)
         {
-            try
-            {
-                searchBy = searchBy == "Author" ? "Author" : "Title";
                 List<Book> books = Db.Books.ToList();
                 List<Author> authors = Db.Authors.ToList();
                 if (!String.IsNullOrEmpty(searchString))
@@ -58,9 +91,7 @@ namespace Library_CourseWorkDB.Controllers
                         List<Book> booksA = new List<Book>();
                         foreach (var author in authors)
                         {
-                                if (author.LastName.ToUpper().Contains(searchString.ToUpper()) ||
-                                    author.SecondName.ToUpper().Contains(searchString.ToUpper()) ||
-                                    author.Name.ToUpper().Contains(searchString.ToUpper()))
+                            if (IsContainsLN(searchString, author) || IsContainsSN(searchString, author) || IsContainsN(searchString, author))
                                 {
                                     foreach (var book in author.BooksList)
                                     {
@@ -72,11 +103,6 @@ namespace Library_CourseWorkDB.Controllers
                     }
                 }
                 return HttpNotFound();
-            }
-            catch
-            {
-                return HttpNotFound();
-            }
         }
         [AllowAnonymous]
         public ActionResult About()
