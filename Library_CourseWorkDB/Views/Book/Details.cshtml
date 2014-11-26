@@ -4,8 +4,8 @@
     ViewBag.Title = "Книга";
 }
 <link href="~/Content/MyStyles.css" rel="stylesheet" />
-<div style="background-color:#F8F8F8; padding:10px;  border-radius:10px; max-width:50%; margin:0 auto;margin-top:20px">
-    <div style="max-width:100%; margin:0 auto">
+<div style="background-color: #F8F8F8; padding: 10px; border-radius: 10px; max-width: 50%; margin: 0 auto; margin-top: 20px">
+    <div style="max-width: 100%; margin: 0 auto">
         <fieldset id="myContainer">
             <legend>
                 @if (Model.BookCopies.Any(bc => bc.Status.Name == "available"))
@@ -26,8 +26,7 @@
                     @Html.ActionLink(" ", "Delete", new { id = Model.ID }, new { @class = "glyphicon glyphicon-remove" })
                 }
             </legend>
-            <div style="float:right; ">
-
+            <div style="float: right;">
             </div>
             <div class="col1">
                 @Html.DisplayNameFor(model => model.Name)
@@ -78,7 +77,6 @@
                     </legend>
 
                     @{ Html.RenderAction("CopyList", "Book"); }
-
                 </fieldset>
             </div>
         }
