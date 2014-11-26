@@ -37,7 +37,7 @@
         }
     </div>
     
-@if (User.IsInRole("Librarian") || 1 == 1)//REMOVE 1==1 ADD STYLES
+@if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
 {
     <div style="width:20%; float:left; margin:1%; margin-top:0.5%">
         @Html.ActionLink("Добавить новую книгу", "Create", "Book", null, new { @class = "btn btn-default" })
@@ -50,8 +50,11 @@
         <div style="float:right">
             @Html.ActionLink("Просмотреть книгу", "Details", "Book", new { id = item.ID }, new { @class = "btn btn-success" })
             <div style="float:right; margin-left:4px">
+@if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
+{
             @Html.ActionLink(" ", "Edit", "Book", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil" })<br>
             @Html.ActionLink(" ", "Delete", "Book", new { id = item.ID }, new { @class = "glyphicon glyphicon-remove" })
+}
             </div>
         </div>
         <div style="width: 70%; font-size: large">

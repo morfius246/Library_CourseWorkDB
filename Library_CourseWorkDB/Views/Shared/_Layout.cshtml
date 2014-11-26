@@ -14,10 +14,13 @@
             <div class="container-fluid" style="min-width:1000px; margin: 0 auto">
                 <ul class="nav navbar-nav" style="min-width:1000px; margin: 0 auto">
                     <li>@Html.ActionLink("Головна", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Запити", "Index", "Request")</li>
-                    <li>@Html.ActionLink("Видані", "Confirmed", "Request")</li>
+                    @if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Запити", "Index", "Request")</li>
+                        <li>@Html.ActionLink("Видані", "Confirmed", "Request")</li>
+                    }
                     <!--<li>@Html.ActionLink("Історія бібліотеки", "About", "Home")</li>
-        <li>@Html.ActionLink("Контакти", "Contact", "Home")</li>-->
+                    <li>@Html.ActionLink("Контакти", "Contact", "Home")</li>-->
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="margin: 0 auto">
                     @Html.Partial("_LoginPartial")

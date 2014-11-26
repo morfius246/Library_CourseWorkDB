@@ -8,18 +8,23 @@
     <div style="max-width:100%; margin:0 auto">
         <fieldset id="myContainer">
             <legend>
-                Книга
                 @if (Model.BookCopies.Any(bc => bc.Status.Name == "available"))
                 {
-                    @Html.ActionLink("Взять домой", "Create", "Request", new { bookId = Model.ID, type = "take" }, new { @class = "btn btn-default", @style = "margin:5px" });
-                    @Html.ActionLink("Читать в зале", "Create", "Request", new { bookId = Model.ID, type = "read" }, new { @class = "btn btn-default", @style = "margin:5px" });
+                    if (!User.IsInRole("Librarian") || !User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Взять домой", "Create", "Request", new { bookId = Model.ID, type = "take" }, new { @class = "btn btn-default", @style = "margin:5px" });
+                        @Html.ActionLink("Читать в зале", "Create", "Request", new { bookId = Model.ID, type = "read" }, new { @class = "btn btn-default", @style = "margin:5px" });
+                    }
                 }
                 else
                 {
                     <span>Немає доступних</span>
                 }
-                @Html.ActionLink(" ", "Edit", new { id = Model.ID }, new { @class = "glyphicon glyphicon-pencil" })
-                @Html.ActionLink(" ", "Delete", new { id = Model.ID }, new { @class = "glyphicon glyphicon-remove" })
+                @if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink(" ", "Edit", new { id = Model.ID }, new { @class = "glyphicon glyphicon-pencil" })
+                    @Html.ActionLink(" ", "Delete", new { id = Model.ID }, new { @class = "glyphicon glyphicon-remove" })
+                }
             </legend>
             <div style="float:right; ">
 
@@ -59,22 +64,23 @@
                 @Html.DisplayFor(model => model.Pages)
             </div>
         </fieldset>
+        @if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
+        {
+            <div style="background-color:white;padding:10px; margin-top:20px; border-radius:10px">
+                <fieldset id="myContainer">
+                    <legend>
+                        Екземпляри
+                        <a id="partialDisplay" class="glyphicon glyphicon-plus"></a>
+                        @Html.ActionLink("В читальном зале", "Sort", new { stutus = "readingRoom" }, new { @class = "btn btn-default", @style = "margin:5px" })
+                        @Html.ActionLink("На руках", "Sort", new { stutus = "givenAway" }, new { @class = "btn btn-default", @style = "margin:5px" })
+                        @Html.ActionLink("Доступные", "Sort", new { stutus = "available" }, new { @class = "btn btn-default", @style = "margin:5px" })
+                        @{ Html.RenderAction("CreateCopy", "Book", new { id = Model.ID }); }
+                    </legend>
 
-        <div style="background-color:white;padding:10px; margin-top:20px; border-radius:10px">
-            <fieldset id="myContainer">
-                <legend>
-                    Екземпляри
-                    <a id="partialDisplay" class="glyphicon glyphicon-plus"></a>
-                    @Html.ActionLink("В читальном зале", "Sort", new { stutus = "readingRoom" }, new { @class = "btn btn-default", @style = "margin:5px" })
-                    @Html.ActionLink("На руках", "Sort", new { stutus = "givenAway" }, new { @class = "btn btn-default", @style = "margin:5px" })
-                    @Html.ActionLink("Доступные", "Sort", new { stutus = "available" }, new { @class = "btn btn-default", @style = "margin:5px" })
-                    @{ Html.RenderAction("CreateCopy", "Book", new { id = Model.ID }); }
-                </legend>
+                    @{ Html.RenderAction("CopyList", "Book"); }
 
-                @{ Html.RenderAction("CopyList", "Book"); }
-
-            </fieldset>
-        </div>
+                </fieldset>
+            </div>
+        }
     </div>
-    </div>
-
+</div>
