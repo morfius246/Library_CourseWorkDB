@@ -45,6 +45,7 @@ namespace Library_CourseWorkDB.Controllers
             {
                 searchBy = searchBy == "Author" ? "Author" : "Title";
                 List<Book> books = Db.Books.ToList();
+                List<Author> authors = Db.Authors.ToList();
                 if (!String.IsNullOrEmpty(searchString))
                 {
                     if(searchBy == "Title")
@@ -55,17 +56,17 @@ namespace Library_CourseWorkDB.Controllers
                     else if (searchBy == "Author")
                     {
                         List<Book> booksA = new List<Book>();
-                        foreach (var book in books)
+                        foreach (var author in authors)
                         {
-                            foreach (var author in book.AuthorsList)
-                            {
                                 if (author.LastName.ToUpper().Contains(searchString.ToUpper()) ||
                                     author.SecondName.ToUpper().Contains(searchString.ToUpper()) ||
                                     author.Name.ToUpper().Contains(searchString.ToUpper()))
                                 {
-                                    booksA.Add(book);
+                                    foreach (var book in author.BooksList)
+                                    {
+                                        booksA.Add(book);
+                                    }
                                 }
-                            }
                         }
                         return View(booksA.ToList());
                     }
