@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Library_CourseWorkDB.Models.ConfirmedRequest>
+﻿@using PdfRpt.Core.Helper
+@model IEnumerable<Library_CourseWorkDB.Models.ConfirmedRequest>
 
 @{
     ViewBag.Title = "Confirmed";
@@ -8,12 +9,21 @@
 <table style="border-collapse: separate; border-spacing: 11px 2px">
     <tr>
         <th>
+            @Html.DisplayNameFor(m=>m.Request.BookCopy.Book.Name)
+        </th>
+        <th style="width: 100px">
+            @Html.DisplayNameFor(m=>m.Request.BookCopy.InventaryNumber)
+        </th>
+        <th>
+            <span>Читач</span>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.GiveAwayDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ReturnDate)
         </th>
-        <th>
+        <th style="width: 65px">
             @Html.DisplayNameFor(model => model.IsReturned)
         </th>
         <th>
@@ -22,27 +32,45 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            
-            @Html.DisplayFor(modelItem => item.GiveAwayDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReturnDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsReturned)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OverduedDays)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RequestID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RequestID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RequestID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <span>@item.Request.BookCopy.Book.GetShortName()</span>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Request.BookCopy.InventaryNumber)
+            </td>
+            <td>
+                <span>@item.Request.ReadingCard.GetShortName() (@item.Request.ReadingCardID)</span>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiveAwayDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsReturned)
+            </td>
+            <td>
+                @{
+                    int overduedDays = (DateTime.Now - item.ReturnDate).Days;
+                    if (overduedDays < 0)
+                    {
+                        <span style="color: green">@overduedDays</span>
+                    }
+                    else
+                    {
+                        <span style="color: orangered">@overduedDays</span>
+                    }
+                   
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Закрити", "Close", new { id = item.RequestID })
+            </td>
+        </tr>
+    }
 
 </table>

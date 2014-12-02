@@ -8,38 +8,38 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
-    <fieldset>
-        <div style="margin:0 auto; width: 400px">
+    <fieldset style="width: 400px; margin: 0 auto">
+        <legend> Реєстрація </legend>
+        <div style="width: 400px">
             <div class="form-group">
-                @Html.TextBoxFor(m => m.Login, new { @class = "form-control", @placeholder = "Логин" })
-                @Html.ValidationMessageFor(model => model.Login, null, new { style = "color:red" })
-            </div>
-            <div class="form-group">
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Имя" })
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Ім'я" })
                 @Html.ValidationMessageFor(model => model.Name, null, new { style = "color:red" })
             </div>
             <div class="form-group">
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Фамилия" })
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Прізвище" })
                 @Html.ValidationMessageFor(model => model.LastName, null, new { style = "color:red" })
             </div>
             <div class="form-group">
-                @Html.TextBoxFor(m => m.SecondName, new { @class = "form-control", @placeholder = "Отчество" })
+                @Html.TextBoxFor(m => m.SecondName, new { @class = "form-control", @placeholder = "По-батькові" })
                 @Html.ValidationMessageFor(model => model.SecondName, null, new { style = "color:red" })
             </div>
             <div class="form-group">
-                @Html.TextBoxFor(m => m.Passport, new { @class = "form-control", @placeholder = "Серия паспорта" })
+                @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", @placeholder = "Дата народження" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Passport, new { @class = "form-control", @placeholder = "Номер паспорту" })
                 @Html.ValidationMessageFor(model => model.Passport, null, new { style = "color:red" })
             </div>
             <div class="form-group">
-                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Номер телефона" })
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "Номер телефону" })
                 @Html.ValidationMessageFor(model => model.PhoneNumber, null, new { style = "color:red" })
             </div>
             <div class="form-group">
-                @Html.TextBoxFor(m => m.PlaceOfWork, new { @class = "form-control", @placeholder = "Место работы" })
+                @Html.TextBoxFor(m => m.PlaceOfWork, new { @class = "form-control", @placeholder = "Місце роботи" })
                 @Html.ValidationMessageFor(model => model.PlaceOfWork, null, new { style = "color:red" })
             </div>
             <div class="form-group">
-                @Html.TextBoxFor(m => m.WorkPosition, new { @class = "form-control", @placeholder = "Должность" })
+                @Html.TextBoxFor(m => m.WorkPosition, new { @class = "form-control", @placeholder = "Посада" })
                 @Html.ValidationMessageFor(model => model.WorkPosition, null, new { style = "color:red" })
             </div>
             <div class="form-group">
@@ -48,11 +48,11 @@
             </div>
 
             <div class="form-group">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Подтверждение пароля" })
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Підтвердження паролю" })
                 @Html.ValidationMessageFor(model => model.ConfirmPassword, null, new { style = "color:red" })
             </div>
             <div class="form-group">
-                <input type="submit" value="Зарегистрироваться" class="btn btn-primary" />
+                <input type="submit" value="Зареєструватися" class="btn btn-primary" />
             </div>
         </div>
         

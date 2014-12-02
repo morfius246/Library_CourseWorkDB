@@ -72,9 +72,9 @@ namespace Library_CourseWorkDB.Models
 
     public class RegisterModel
     {
-        [Required]
+        /*[Required]
         [Display(Name = "User name")]
-        public string Login { get; set; }
+        public string Login { get; set; }*/
 
         [Required]
         [Display(Name = "Name")]
@@ -86,6 +86,11 @@ namespace Library_CourseWorkDB.Models
 
         [Display(Name = "Second name")]
         public string SecondName { get; set; }
+
+        [Required]
+        [DisplayFormat(DataFormatString = "{0:MM.dd.yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "BirthDate")]
+        public DateTime BirthDate { get; set; }
 
         [Required]
         [Display(Name = "Passport")]

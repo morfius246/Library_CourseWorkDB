@@ -80,20 +80,20 @@ namespace Library_CourseWorkDB.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.Login, model.Password);
-                    WebSecurity.Login(model.Login, model.Password);
-                    Roles.AddUserToRole(model.Login, "Student");
+                    WebSecurity.CreateUserAndAccount(model.PhoneNumber, model.Password);
+                    WebSecurity.Login(model.PhoneNumber, model.Password);
+                    Roles.AddUserToRole(model.PhoneNumber, "Student");
                     db.ReadingCards.Add(new ReadingCard
                     {
-                        Name = model.Login,
+                        Name = model.Name,
                         LastName = model.LastName,
+                        SecondName = model.SecondName,
                         Passport = model.Passport,
                         PhoneNumber = model.PhoneNumber,
                         PlaceOfWork = model.PlaceOfWork,
                         RegistrationDate = DateTime.Now,
-                        SecondName = model.SecondName,
                         WorkPosition = model.WorkPosition,
-                        BirthDate = DateTime.Now
+                        BirthDate = model.BirthDate
                     });
                     db.SaveChanges();
                     return RedirectToAction("Index", "Home");

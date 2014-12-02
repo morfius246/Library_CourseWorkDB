@@ -36,7 +36,7 @@ namespace Library_CourseWorkDB.Controllers
         }
         //
         // GET: /Request/Details/5
-        [Authorize(Roles = "Admin, Librarian")]
+       /* [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Details(int id = 0)
         {
             Request request = db.Requests.Find(id);
@@ -46,7 +46,7 @@ namespace Library_CourseWorkDB.Controllers
                 return HttpNotFound();
             }
             return View(request);
-        }
+        }*/
 
         //
         // GET: /Request/Create
@@ -87,6 +87,11 @@ namespace Library_CourseWorkDB.Controllers
         {
             if (ModelState.IsValid)
             {
+                BookCopy bookCopy = db.BookCopies.FirstOrDefault(bc => bc.InventaryNumber == request.InventNumberID);
+                bookCopy.Status = db.Statuses.FirstOrDefault(s => s.Name == "locked");
+
+                db.Entry(bookCopy).State = EntityState.Modified;
+
                 db.Requests.Add(request);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -130,7 +135,35 @@ namespace Library_CourseWorkDB.Controllers
 
             return PartialView("SuccessPartial");
         }
-        [Authorize(Roles = "Admin, Librarian")]
+
+        public ActionResult Close(int id = 0)
+        {
+            ConfirmedRequest confirmedRequest = db.ConfirmedRequests.Find(id);
+            Request request = null;
+            BookCopy bookCopy = null;
+            if (confirmedRequest != null)
+            {
+                request = db.Requests.Find(confirmedRequest.RequestID);
+                if (request != null)
+                {
+                    bookCopy = db.BookCopies.Find(request.BookCopy.InventaryNumber);
+                }
+            }
+            if (confirmedRequest == null || request == null || bookCopy == null)
+            {
+                return HttpNotFound();
+            }
+            bookCopy.Status = db.Statuses.FirstOrDefault(s => s.Name == "available");
+            
+            db.Entry(bookCopy).State = EntityState.Modified;
+            db.Requests.Remove(request);
+            db.ConfirmedRequests.Remove(confirmedRequest);
+            db.SaveChanges();
+
+            return RedirectToAction("Confirmed");
+        }
+
+        /*[Authorize(Roles = "Admin, Librarian")]
         public ActionResult Delete(int id = 0)
         {
             Request request = db.Requests.Find(id);
@@ -153,7 +186,7 @@ namespace Library_CourseWorkDB.Controllers
             db.Requests.Remove(request);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
+        }*/
         [Authorize(Roles = "Admin, Librarian")]
         public ActionResult GetPdf(string pdfName)
         {

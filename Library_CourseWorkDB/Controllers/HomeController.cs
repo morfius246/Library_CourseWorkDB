@@ -19,10 +19,11 @@ namespace Library_CourseWorkDB.Controllers
         [AllowAnonymous]
         public ActionResult Index(String categoryCode)
         {
-            ReadingCard readingCard = Db.ReadingCards.Where(rc => rc.Name == "Borys").First();
+            /*ReadingCard readingCard = Db.ReadingCards.Where(rc => rc.Name == "Borys").First();
             BookCopy bc =
                 Db.BookCopies.Where(c => c.InventaryNumber == 2).Include(b => b.Book).Include(b => b.Book.UDC).First();
-            PdfManager.GetReport("test", readingCard, bc);
+            PdfManager.GetReport("test", readingCard, bc);*/
+
             model.CategoryList = Db.UDCs.Where(x => x.Code == "0" || x.Code == "1" || x.Code == "2" || x.Code == "3" || x.Code == "4" || x.Code == "5" || x.Code == "6"
                 || x.Code == "7" || x.Code == "8" || x.Code == "9").ToList();
 
