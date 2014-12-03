@@ -5,7 +5,7 @@
     <input type="text" name="bookId" id="bookId" value="@ViewBag.bookId" hidden="true"/>
     <input type="text" name="calledFrom" value="@ViewBag.calledFrom" hidden="true"/>
 
-    @Html.DropDownList("author")
+    @Html.DropDownList("author", null, new { @class = "form-control", @style = "margin:5px; width: 200px" })
 
-    <input type="submit" value="Додати автора"/>
+    <input type="submit" value="Додати автора" class="btn btn-primary"/>
 }

@@ -4,66 +4,55 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Book</legend>
-
+    <div style="margin:0 auto; width:500px">
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
+        <div class="form-group" style="width:100%">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Name)
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.UDC)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UDC.Code)
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.UDC.Code, new { @class = "form-control"})
             @Html.ValidationMessageFor(model => model.UDC.Code)
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.EditionYear)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.EditionYear)
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.EditionYear, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.EditionYear)
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Publishing)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Publishing)
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.Publishing, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Publishing)
         </div>
-        
+
         <div class="editor-label">
             @Html.LabelFor(model => model.Pages)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Pages)
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.Pages, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Pages)
         </div>
-
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" style="float:right" class="btn btn-primary" value="Create" />
         </p>
-       
-        
-    </fieldset>
+        </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

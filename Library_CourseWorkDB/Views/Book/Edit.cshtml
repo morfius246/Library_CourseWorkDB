@@ -15,68 +15,67 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset id="myContainer" style="width: 600px">
-        <legend>Книга</legend>
-
+    <div style="margin:0 auto; width:500px">
         @Html.HiddenFor(m => m.UDCID)
         @Html.HiddenFor(model => model.ID)
 
-        <div class="col1">
+        <div class="editor-label">
             @Html.LabelFor(model => model.Name)
         </div>
-        <div class="col2">
-            @Html.EditorFor(model => model.Name)
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Name)
         </div>
 
-        <div class="col1">
+        <div class="editor-label">
             @Html.LabelFor(model => model.UDC)
         </div>
-        <div class="col2">
-            @Html.EditorFor(model => model.UDC.Code)
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.UDC.Code, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.UDC.Code)
         </div>
 
-        <div class="col1">
+        <div class="editor-label">
             @Html.LabelFor(model => model.EditionYear)
         </div>
-        <div class="col2">
-            @Html.EditorFor(model => model.EditionYear)
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.EditionYear, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.EditionYear)
         </div>
 
-        <div class="col1">
+        <div class="editor-label">
             @Html.LabelFor(model => model.Publishing)
         </div>
-        <div class="col2">
-            @Html.TextAreaFor(model => model.Publishing)
+        <div class="form-group">
+            @Html.TextAreaFor(model => model.Publishing, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Publishing)
         </div>
 
-        <div class="col1">
+        <div class="editor-label">
             @Html.LabelFor(model => model.Pages)
         </div>
-        <div class="col2">
-            @Html.EditorFor(model => model.Pages)
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.Pages, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Pages)
         </div>
-
-        <p style="clear: both">
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
-
-@{
+        <div>
+            @{
     Html.RenderPartial("AuthorListPartial", Model);
-}
-@{
+            }
+        </div>
+        <div>
+            @{
     Html.RenderAction("AddAuthor");
+            }
+        </div>
+        <p style="clear: both">
+            <input type="submit" value="Зберегти" class="btn btn-primary" style="float:right" />
+        </p>
+    </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

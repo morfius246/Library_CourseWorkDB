@@ -50,7 +50,6 @@ namespace Library_CourseWorkDB.Controllers
 
         //
         // GET: /Request/Create
-        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Create(int bookId = 0, string type = "none")
         {
             Book book = db.Books.Find(bookId);
@@ -82,7 +81,6 @@ namespace Library_CourseWorkDB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Create(Request request)
         {
             if (ModelState.IsValid)

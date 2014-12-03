@@ -8,11 +8,13 @@
             foreach (Author author in Model.AuthorsList)
             {
                 
-            <div class="col1" style="width: 200px">@i . @author.GetShortName()</div>
-                if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
+            <div style="width: 200px">@i . @author.GetShortName()
+                @if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
                 {
-                <div class="col2">@Html.ActionLink("X", "RemoveAuthor", new { id = author.ID, bookId = Model.ID }) </div>
+                @Html.ActionLink(" ", "RemoveAuthor", new { id = author.ID, bookId = Model.ID }, new { @class = "glyphicon glyphicon-remove" , @style= "float:right"})
                 }
+                
+                </div>
                 i++;
             }
         }

@@ -22,8 +22,9 @@
                 }
                 @if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
                 {
-                    @Html.ActionLink(" ", "Edit", new { id = Model.ID }, new { @class = "glyphicon glyphicon-pencil" })
-                    @Html.ActionLink(" ", "Delete", new { id = Model.ID }, new { @class = "glyphicon glyphicon-remove" })
+                    @Html.ActionLink(" ", "Delete", new { id = Model.ID }, new { @class = "glyphicon glyphicon-remove", style = "margin-right:20px; float:right" })
+                    @Html.ActionLink(" ", "Edit", new { id = Model.ID }, new { @class = "glyphicon glyphicon-pencil", style="margin-right:20px; float:right"})
+                    
                 }
             </legend>
             <div style="float: right;">
@@ -70,9 +71,11 @@
                     <legend>
                         Екземпляри
                         <a id="partialDisplay" class="glyphicon glyphicon-plus"></a>
-                        @Html.ActionLink("В читальном зале", "Sort", new { stutus = "readingRoom" }, new { @class = "btn btn-default", @style = "margin:5px" })
+                        <!--
+                            @Html.ActionLink("В читальном зале", "Sort", new { stutus = "readingRoom" }, new { @class = "btn btn-default", @style = "margin:5px" })
                         @Html.ActionLink("На руках", "Sort", new { stutus = "givenAway" }, new { @class = "btn btn-default", @style = "margin:5px" })
-                        @Html.ActionLink("Доступные", "Sort", new { stutus = "available" }, new { @class = "btn btn-default", @style = "margin:5px" })
+                        @Html.ActionLink("Доступные", "Sort", new { stutus = "available" }, new { @class = "btn btn-default", @style = "margin:5px" })-->
+
                         @{ Html.RenderAction("CreateCopy", "Book", new { id = Model.ID }); }
                     </legend>
 
