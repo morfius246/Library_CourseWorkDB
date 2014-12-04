@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Home Page";
 }
+
+
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <style>
     .book {
@@ -18,6 +20,16 @@
         padding-bottom: 20px;
     }
 </style>
+<script src="~/Scripts/jquery-1.9.0.js"></script>
+<script>
+    $(function() {
+        $("#searchDropDown").change(function () {
+            document.getElementById("searchBox").focus();
+        });
+    });
+</script>
+
+
 <div style="margin: 0 auto">
 
     <div id="list-group" style="width:20%; float:left; margin:1%; margin-top:0.5%">
@@ -25,10 +37,10 @@
             @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "navbar" }))
             {
                 var list = new List<SelectListItem>();
-                list.Add(new SelectListItem { Text = "По книге", Value = "Title" });
+                list.Add(new SelectListItem { Text = "По книзі", Value = "Title" });
                 list.Add(new SelectListItem { Text = "По автору", Value = "Author" });
-                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Поиск...", type = "text" })
-                @Html.DropDownList("SearchBy", list, new { @class = "form-control" })
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @id="searchBox", @autofocus=true, placeholder = "Пошук...", type = "text" })
+                @Html.DropDownList("SearchBy", list, new { @class = "form-control", @id="searchDropDown" })
 
 
             }
@@ -46,7 +58,7 @@
     @if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
     {
         <div style="width:20%; float:left; margin:1%; margin-top:0.5%">
-            @Html.ActionLink("Добавить новую книгу", "Create", "Book", null, new { @class = "btn btn-default" })
+            @Html.ActionLink("Додати книгу", "Create", "Book", null, new { @class = "btn btn-default" })
         </div>
     }
 
@@ -58,7 +70,8 @@
                 <div style="float:right; margin-left:4px">
                     @if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
                     {
-                        @Html.ActionLink(" ", "Edit", "Book", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil" })<br>
+                        @Html.ActionLink(" ", "Edit", "Book", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil" })
+                        <br/>
                         @Html.ActionLink(" ", "Delete", "Book", new { id = item.ID }, new { @class = "glyphicon glyphicon-remove" })
                     }
                 </div>

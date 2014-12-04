@@ -7,8 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.Services.Description;
+using System.Web.UI.WebControls;
 using Library_CourseWorkDB.BAL;
 using Library_CourseWorkDB.Models;
+using Org.BouncyCastle.Ocsp;
 using Rotativa;
 using Library_CourseWorkDB.Filters;
 
@@ -29,10 +32,60 @@ namespace Library_CourseWorkDB.Controllers
             return View(requests.ToList());
         }
         [Authorize(Roles = "Admin, Librarian")]
-        public ActionResult Confirmed()
+        public ActionResult Confirmed(string sort)
         {
-            var requests = db.ConfirmedRequests;
-            return View(requests.ToList());
+            List<ConfirmedRequest> requests = new List<ConfirmedRequest>();
+            ViewBag.overduedSort = sort == "overdued_asc" ? "overdued_desc" : "overdued_asc";
+            ViewBag.bookSort = sort == "book_asc" ? "book_desc" : "book_asc";
+            ViewBag.inventaryNSort = sort == "inventaryN_asc" ? "inventaryN_desc" : "inventaryN_asc";
+            ViewBag.reader = sort == "reader_asc" ? "reader_desc" : "reader_asc";
+            ViewBag.giveAwayDateSort = sort == "giveAwayDate_asc" ? "giveAwayDate_desc" : "giveAwayDate_asc";
+            ViewBag.returnDateSort = sort == "return_asc" ? "return_desc" : "return_asc";
+
+            switch (sort)
+            {
+                case "overdued_asc":
+                    requests = db.ConfirmedRequests.OrderBy(cr => cr.ReturnDate).ToList();
+                    break;
+                case "overdued_desc":
+                    requests = db.ConfirmedRequests.OrderByDescending(cr => cr.ReturnDate).ToList();
+                    break;
+                case "book_asc":
+                     requests = db.ConfirmedRequests.OrderBy(cr => cr.Request.BookCopy.Book.Name).ToList();
+                    break;
+                case "book_desc":
+                    requests = db.ConfirmedRequests.OrderByDescending(cr => cr.Request.BookCopy.Book.Name).ToList();
+                    break;
+                case "inventaryN_asc":
+                    requests = db.ConfirmedRequests.OrderBy(cr => cr.Request.BookCopy.InventaryNumber).ToList();
+                    break;
+                case "inventaryN_dessc":
+                    requests = db.ConfirmedRequests.OrderByDescending(cr => cr.Request.BookCopy.InventaryNumber).ToList();
+                    break;
+                case "reader_asc":
+                    requests = db.ConfirmedRequests.OrderBy(cr => cr.Request.ReadingCard.SecondName).ToList();
+                    break;
+                case "reader_desc":
+                    requests = db.ConfirmedRequests.OrderByDescending(cr => cr.Request.ReadingCard.SecondName).ToList();
+                    break;
+                case "giveAwayDate_asc":
+                    requests = db.ConfirmedRequests.OrderBy(cr => cr.GiveAwayDate).ToList();
+                    break;
+                case "giveAwayDate_desc":
+                    requests = db.ConfirmedRequests.OrderByDescending(cr => cr.GiveAwayDate).ToList();
+                    break;
+                case "return_asc":
+                    requests = db.ConfirmedRequests.OrderBy(cr => cr.ReturnDate).ToList();
+                    break;
+                case "return_desc":
+                    requests = db.ConfirmedRequests.OrderByDescending(cr => cr.ReturnDate).ToList();
+                    break;
+                default: requests = db.ConfirmedRequests.ToList();
+                    break;
+            }
+
+            
+            return View(requests);
         }
         //
         // GET: /Request/Details/5
@@ -54,7 +107,7 @@ namespace Library_CourseWorkDB.Controllers
         {
             Book book = db.Books.Find(bookId);
             RequestType requestType = db.RequestTypes.FirstOrDefault(r => r.Name == type);
-            ReadingCard readingCard = db.ReadingCards.First(r => r.Name == User.Identity.Name);//change name for passport or login or phone number
+            ReadingCard readingCard = db.ReadingCards.FirstOrDefault(r => r.PhoneNumber == User.Identity.Name);//change name for passport or login or phone number
 
             if (book == null || requestType == null || readingCard == null)
             {
@@ -81,6 +134,7 @@ namespace Library_CourseWorkDB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Librarian, Student")]
         public ActionResult Create(Request request)
         {
             if (ModelState.IsValid)
@@ -92,10 +146,30 @@ namespace Library_CourseWorkDB.Controllers
 
                 db.Requests.Add(request);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             return View(request);
         }
+
+        [HttpPost]
+        public ActionResult Delete(int id = 0)
+        {
+            Request request = db.Requests.Find(id);
+            BookCopy bookCopy = request.BookCopy;
+            Status availableStatus = db.Statuses.FirstOrDefault(s => s.Name == "available");
+
+            if (request == null || bookCopy == null || availableStatus == null)
+            {
+                return HttpNotFound();
+            }
+
+            bookCopy.Status = availableStatus;
+            db.Entry(bookCopy).State = EntityState.Modified;
+            db.Requests.Remove(request);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Confirm(int id = 0)
         {
@@ -114,17 +188,21 @@ namespace Library_CourseWorkDB.Controllers
         {
             int durationInMonthes;
             BookCopy bookCopy = db.BookCopies.Find(request.InventNumberID);
-            if (!int.TryParse(selectedDuration, out durationInMonthes) || durationInMonthes<0 || durationInMonthes>6 || bookCopy == null)
+            request = db.Requests.Find(request.ID);
+            if ((!int.TryParse(selectedDuration, out durationInMonthes) || durationInMonthes < 0 || durationInMonthes > 6 || bookCopy == null) && request.RequestType.Name != "read")
             {
                 return HttpNotFound();
             }
             ConfirmedRequest confirmedRequest = new ConfirmedRequest(request.ID, durationInMonthes);
 
-            request = db.Requests.Find(request.ID);
+            
             if (request.RequestType.Name == "take")
                 bookCopy.StatusID = db.Statuses.FirstOrDefault(s => s.Name == "givenAway").ID;
             else if (request.RequestType.Name == "read")
+            {
+                confirmedRequest = new ConfirmedRequest(request.ID);
                 bookCopy.StatusID = db.Statuses.FirstOrDefault(s => s.Name == "readingRoom").ID;
+            }
             db.Entry(bookCopy).State = EntityState.Modified;
             db.ConfirmedRequests.Add(confirmedRequest);
             db.SaveChanges();

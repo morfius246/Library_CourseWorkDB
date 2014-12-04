@@ -1,4 +1,5 @@
-﻿@using PdfRpt.Core.Helper
+﻿@using System.Web.Razor.Parser.SyntaxTree
+@using PdfRpt.Core.Helper
 @model IEnumerable<Library_CourseWorkDB.Models.ConfirmedRequest>
 
 @{
@@ -9,25 +10,22 @@
 <table style="border-collapse: separate; border-spacing: 11px 2px">
     <tr>
         <th>
-            @Html.DisplayNameFor(m=>m.Request.BookCopy.Book.Name)
+           @Html.ActionLink(@Html.DisplayNameFor(model => model.Request.BookCopy.Book.Name).ToString(), "Confirmed", new{sort = ViewBag.bookSort})
         </th>
         <th style="width: 100px">
-            @Html.DisplayNameFor(m=>m.Request.BookCopy.InventaryNumber)
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.Request.BookCopy.InventaryNumber).ToString(), "Confirmed", new{sort = ViewBag.inventaryNSort})
         </th>
         <th>
-            <span>Читач</span>
+            @Html.ActionLink("Читач", "Confirmed", new{sort = ViewBag.reader})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GiveAwayDate)
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.GiveAwayDate).ToString(), "Confirmed", new{sort = ViewBag.giveAwayDateSort})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReturnDate)
-        </th>
-        <th style="width: 65px">
-            @Html.DisplayNameFor(model => model.IsReturned)
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.ReturnDate).ToString(), "Confirmed", new{sort = ViewBag.returnDateSort})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OverduedDays)
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.OverduedDays).ToString(), "Confirmed", new{sort = ViewBag.overduedSort})
         </th>
         <th></th>
     </tr>
@@ -51,18 +49,22 @@
                 @Html.DisplayFor(modelItem => item.ReturnDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsReturned)
-            </td>
-            <td>
                 @{
                     int overduedDays = (DateTime.Now - item.ReturnDate).Days;
                     if (overduedDays < 0)
                     {
-                        <span style="color: green">@overduedDays</span>
+                        <span style="color: green">@overduedDays д.</span>
                     }
                     else
                     {
-                        <span style="color: orangered">@overduedDays</span>
+                        if (item.Request.RequestType.Name != "read")
+                        {
+                            <span style="color: orangered">@overduedDays д.</span>
+                        }
+                        else
+                        {
+                            <Span> Чит.зал </Span>
+                        }
                     }
                    
                 }

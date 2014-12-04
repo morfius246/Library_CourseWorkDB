@@ -5,7 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Search</h2>
+<h2>Пошук</h2>
+@if (Model == null || Model.Count == 0)
+{
+    <h3>За заданими критеріями нічого не знайдено</h3>
+}
 
 @foreach (var item in Model)
 {

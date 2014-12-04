@@ -10,14 +10,17 @@
     @Html.HiddenFor(m => m.InventNumberID);
     @Html.HiddenFor(m => m.RequestTypeID);
     
-    <select name="selectedDuration">
-        <option value="1">1m.</option>
-        <option value="2">2m.</option>
-        <option value="3">3m.</option>
-        <option value="4">4m.</option>
-        <option value="5">5m.</option>
-        <option value="6">6m.</option>
-    </select>
-    <input type="submit" value="Підтвердити"/>
+    if (Model.RequestType.Name == "take")
+     {
+         <select name="selectedDuration" style="float: left; width: 75px; height: 28px;">
+             <option value="1">1m.</option>
+             <option value="2">2m.</option>
+             <option value="3">3m.</option>
+             <option value="4">4m.</option>
+             <option value="5">5m.</option>
+             <option value="6">6m.</option>
+         </select>
+     }
+    <input type="submit" value="Підтвердити" style="float: left; margin: 0px 5px 5px 5px"/>
     
 }

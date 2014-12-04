@@ -103,7 +103,7 @@ namespace Library_CourseWorkDB.Controllers
                         return View(booksA.ToList());
                     }
                 }
-                return HttpNotFound();
+            return RedirectToAction("Index");
         }
         [AllowAnonymous]
         public ActionResult About()

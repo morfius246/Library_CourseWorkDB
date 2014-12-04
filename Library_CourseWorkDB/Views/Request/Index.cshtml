@@ -28,7 +28,7 @@ else
             <th>
                 @Html.DisplayNameFor(model => model.RequestType)
             </th>
-            <th></th>
+            <th style="width: 300px"></th>
         </tr>
 
         @foreach (var item in Model)
@@ -50,9 +50,14 @@ else
                     @Html.DisplayFor(modelItem => item.RequestType.Name)
                 </td>
                 <td>
-                    @{ Html.RenderAction("Confirm", "Request", new {id = item.ID}); }|
-                    @Html.ActionLink("Details", "Details", new {id = item.ID}) |
-                    @Html.ActionLink("Delete", "Delete", new {id = item.ID})
+                    @{ Html.RenderAction("Confirm", "Request", new {id = item.ID}); }
+                    @using (Html.BeginForm("Delete", "Request", FormMethod.Post))
+                    {
+                        @Html.Hidden("id", item.ID)
+                        <input type="submit" value="Видалити">
+                        @*Html.ActionLink("Видалити", "Delete", new {id = item.ID}, new {@class = "btn btn-default", style = "horiz-align: right; float: left; height: 29px"})*@
+                    }
+                    
                 </td>
             </tr>
         }

@@ -272,9 +272,13 @@ namespace Library_CourseWorkDB.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Book book = db.Books.Find(id);
-            db.Books.Remove(book);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            if (book.BookCopies == null || book.BookCopies.Count == 0)
+            {
+                db.Books.Remove(book);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            else return HttpNotFound("Delete all book copies before deleting book");
         }
     }
 }
