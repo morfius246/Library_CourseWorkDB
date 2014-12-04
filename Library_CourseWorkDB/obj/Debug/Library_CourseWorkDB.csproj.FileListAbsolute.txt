@@ -178,6 +178,8 @@ C:\Users\klok\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\EPP
 C:\Users\klok\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\itextsharp.xml
 C:\Users\klok\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\PdfRpt.xml
 C:\Users\klok\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Rotativa.dll
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\PdfRpt.dll
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Rotativa.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Library_CourseWorkDB.dll.config
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Library_CourseWorkDB.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Library_CourseWorkDB.pdb
@@ -199,8 +201,6 @@ C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWo
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Microsoft.Web.WebPages.OAuth.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Newtonsoft.Json.dll
-C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\PdfRpt.dll
-C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\Rotativa.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Spatial.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Helpers.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\System.Web.Http.OData.dll
@@ -264,7 +264,6 @@ C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWo
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\ru\System.Spatial.resources.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.csprojResolveAssemblyReference.cache
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.initialCreate.resources
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.ChangedEditionDateToEditionYear.resources
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.Migrations.UDCAdded.resources
@@ -272,3 +271,4 @@ C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWo
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.csproj.GenerateResource.Cache
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.dll
 C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.pdb
+C:\Users\Гребенюк\Documents\GitHub\Library_CourseWorkDB\Library_CourseWorkDB\obj\Debug\Library_CourseWorkDB.csprojResolveAssemblyReference.cache

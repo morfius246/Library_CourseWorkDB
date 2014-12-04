@@ -40,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.Request.BookCopy.InventaryNumber)
             </td>
             <td>
-                <span>@item.Request.ReadingCard.GetShortName() (@item.Request.ReadingCardID)</span>
+                <span>@Html.ActionLink(item.Request.ReadingCard.GetShortName(), "Student", "Home", new { id = item.Request.ReadingCard.ID }, null) (@item.Request.ReadingCardID)</span>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GiveAwayDate)

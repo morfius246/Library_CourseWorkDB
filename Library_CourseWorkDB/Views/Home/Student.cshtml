@@ -1,0 +1,70 @@
+﻿@model ICollection<Library_CourseWorkDB.Models.Request>
+
+@{
+    ViewBag.Title = "Student";
+}
+
+<style>
+    .book {
+        margin-left: 25%;
+        margin-top: 0.5%;
+        margin-bottom: 0.5%;
+        min-width: 450px;
+        width: 50%;
+        height: 50%;
+        float: left;
+        background-color: #F8F8F8;
+        border-radius: 10px;
+        padding: 30px;
+        padding-bottom: 20px;
+    }
+</style>
+<fieldset>
+    <legend>Усі книги користувача</legend>
+    @foreach (var item in Model)
+    {
+        <div class="book">
+            <div style="float:right">
+                @Html.ActionLink("Просмотреть книгу", "Details", "Book", new { id = item.BookCopy.Book.ID }, new { @class = "btn btn-success" })
+                <div style="float:right; margin-left:4px">
+                    @if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink(" ", "Edit", "Book", new { id = item.BookCopy.Book.ID }, new { @class = "glyphicon glyphicon-pencil" })
+                        <br />
+                        @Html.ActionLink(" ", "Delete", "Book", new { id = item.BookCopy.Book.ID }, new { @class = "glyphicon glyphicon-remove" })
+                    }
+                </div>
+            </div>
+            <div style="width: 70%; font-size: large">
+                @item.BookCopy.Book.Name<br>
+            </div>
+            <div style="width: 70%">
+                @if (item.BookCopy.Book.AuthorsList != null && item.BookCopy.Book.AuthorsList.Count > 0)
+                {
+                    int count = 0;
+                    foreach (var author in item.BookCopy.Book.AuthorsList)
+                    {
+                        <span>@author.GetShortName()</span>
+                        count++;
+                        if (count < item.BookCopy.Book.AuthorsList.Count)
+                        {
+                            <span>/</span>
+                        }
+                    }
+                }
+                else
+                {
+                    <span>Немає авторів</span>
+                }
+            </div>
+            <div style="width: 70%">
+                Рік видання: @item.BookCopy.Book.EditionYear р.<br>
+            </div>
+
+            <div style="width: 70%">
+                Інвентарний номер: @item.InventNumberID<br>
+            </div>
+
+        </div>
+    }
+</fieldset>

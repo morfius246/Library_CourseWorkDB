@@ -398,6 +398,7 @@
     <Content Include="Views\Book\Authors.cshtml" />
     <Content Include="Views\Book\AddAuthor.cshtml" />
     <Content Include="Views\Book\AuthorListPartial.cshtml" />
+    <Content Include="Views\Home\Student.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

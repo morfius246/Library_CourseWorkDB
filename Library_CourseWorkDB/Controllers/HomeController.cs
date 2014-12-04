@@ -51,6 +51,13 @@ namespace Library_CourseWorkDB.Controllers
             }
             else return false;
         }
+
+        public ActionResult Student(int id)
+        {
+            ReadingCard model = Db.ReadingCards.Find(id);
+            return View(model.RequestsList);
+        }
+
         public bool IsContainsSN(string searchString, Author author)
         {
             if (author.SecondName != null)
