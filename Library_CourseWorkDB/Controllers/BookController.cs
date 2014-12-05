@@ -53,10 +53,18 @@ namespace Library_CourseWorkDB.Controllers
         [Authorize(Roles = "Admin, Librarian")]
         public ActionResult Create(Book book)
         {
+            UDC udc = db.UDCs.FirstOrDefault(u => u.Code == book.UDC.Code);
             if (!book.isDateValid())
                 ModelState.AddModelError("EditionYear", "Невірна дата публікації");
-            if (!book.UDC.IsValid(db))
+            if (!book.UDC.IsValid(db) || udc.Description == null || udc.Description == "")
+            {
                 ModelState.AddModelError("UDC.Code", "Невідомий УДК");
+            }
+            else
+            {
+                book.UDCID = udc.ID;
+                book.UDC = udc;
+            }
 
             if (ModelState.IsValid)
             {

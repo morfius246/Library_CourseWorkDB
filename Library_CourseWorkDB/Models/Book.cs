@@ -54,7 +54,7 @@ namespace Library_CourseWorkDB.Models
 
         public bool isDateValid()
         {
-            if (EditionYear > DateTime.Now.AddYears(-1000).Year || EditionYear <= DateTime.Now.Year)
+            if (EditionYear > DateTime.Now.AddYears(-1000).Year && EditionYear <= DateTime.Now.Year)
                 return true;
             return false;
         }

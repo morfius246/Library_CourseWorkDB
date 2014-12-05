@@ -27,5 +27,18 @@ namespace Library_CourseWorkDB.Models
                 return true;
             return false;
         }
+
+        public string GetShortName(int length = 22)
+        {
+            if (Description == null)
+            {
+                return "error";
+            }
+            else if (Description.Length > length + 3)
+            {
+                return String.Concat(Description.Substring(0, length), "...");
+            }
+            else return Description;
+        }
     }
 }

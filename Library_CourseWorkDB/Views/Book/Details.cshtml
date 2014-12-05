@@ -40,7 +40,11 @@
                 @Html.DisplayNameFor(model => model.UDC)
             </div>
             <div class="col2">
-                @Html.DisplayFor(model => model.UDC.Code)
+                @{
+                    string category = Model.UDC.Code + "-" + Model.UDC.GetShortName();
+                    <span> @category </span>
+                }
+                 
             </div>
 
             <div class="col1">
