@@ -10,10 +10,14 @@
             <legend>
                 @if (Model.BookCopies.Any(bc => bc.Status.Name == "available"))
                 {
-                    if (!User.IsInRole("Librarian") || !User.IsInRole("Admin"))
+                    if (!User.IsInRole("Librarian") && !User.IsInRole("Admin"))
                     {
-                        @Html.ActionLink("Взять домой", "Create", "Request", new { bookId = Model.ID, type = "take" }, new { @class = "btn btn-default", @style = "margin:5px" });
-                        @Html.ActionLink("Читать в зале", "Create", "Request", new { bookId = Model.ID, type = "read" }, new { @class = "btn btn-default", @style = "margin:5px" });
+                        @Html.ActionLink("Взять домой", "Create", "Request", new {bookId = Model.ID, type = "take"}, new {@class = "btn btn-default", @style = "margin:5px"})
+                        @Html.ActionLink("Читать в зале", "Create", "Request", new {bookId = Model.ID, type = "read"}, new {@class = "btn btn-default", @style = "margin:5px"})
+                    }
+                    else
+                    {
+                        <span>Книга</span>   
                     }
                 }
                 else

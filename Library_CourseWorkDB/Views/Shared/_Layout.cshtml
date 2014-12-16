@@ -8,11 +8,11 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body style=" margin:0 auto;max-width:1500px; min-width:1000px">
+<body style=" margin:0 auto;max-width:1500px; min-width:500px">
     <header>
-        <nav class="navbar navbar-default" style="min-width:1000px; margin:0 auto">
-            <div class="container-fluid" style="min-width:1000px; margin: 0 auto">
-                <ul class="nav navbar-nav" style="min-width:1000px; margin: 0 auto">
+        <nav class="navbar navbar-default" style="min-width:500px; margin:0 auto">
+            <div class="container-fluid" style="min-width:500px; margin: 0 auto">
+                <ul class="nav navbar-nav" style="min-width:500px; margin: 0 auto">
                     <li>@Html.ActionLink("Головна", "Index", "Home")</li>
                     @if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
                     {
