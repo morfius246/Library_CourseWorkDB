@@ -15,41 +15,54 @@ namespace Library_CourseWorkDB.Controllers
     public class HomeController : Controller
     {
         protected HomeContext Db = new HomeContext();
-        Main model = new Main();
         [AllowAnonymous]
-        public ActionResult Index(String categoryCode)
+        public ActionResult Index(String categoryCode, String searchString = "")
         {
-            /*ReadingCard readingCard = Db.ReadingCards.Where(rc => rc.Name == "Borys").First();
-            BookCopy bc =
-                Db.BookCopies.Where(c => c.InventaryNumber == 2).Include(b => b.Book).Include(b => b.Book.UDC).First();
-            PdfManager.GetReport("test", readingCard, bc);*/
-
-            model.CategoryList = Db.UDCs.Where(x => x.Code == "0" || x.Code == "1" || x.Code == "2" || x.Code == "3" || x.Code == "4" || x.Code == "5" || x.Code == "6"
+            Main mainModel = new Main();
+            mainModel.CategoryList = Db.UDCs.Where(x => x.Code == "0" || x.Code == "1" || x.Code == "2" || x.Code == "3" || x.Code == "4" || x.Code == "5" || x.Code == "6"
                 || x.Code == "7" || x.Code == "8" || x.Code == "9").ToList();
 
             char categoryChar = ' ';
             if(categoryCode!=null) categoryChar = categoryCode[0];
             if(categoryCode!=null)
             {
-                model.BookList = (from book in Db.Books where book.UDC.Code.Substring(0, 1) == categoryCode.Substring(0, 1) select book).ToList();
+                mainModel.BookList = (from book in Db.Books where book.UDC.Code.Substring(0, 1) == categoryCode.Substring(0, 1) select book).ToList();
             }
             else
             {
-                model.BookList = Db.Books.ToList();
+                mainModel.BookList = Db.Books.ToList();
             }
-            return View(model);
+            return View(mainModel);
         }
-        public bool IsContainsLN(string searchString, Author author)
+
+        public ActionResult BookSearch(string searchBy, string searchString)
         {
-            if (author.LastName != null)
+            IEnumerable<Book> books = null;
+            if (!String.IsNullOrWhiteSpace(searchString) && !String.IsNullOrWhiteSpace(searchBy))
             {
-                if (author.LastName.ToUpper().Contains(searchString.ToUpper()))
+                if (searchBy == "Title")
                 {
-                    return true;
+                    books = Db.Books.Where(x => x.Name.ToUpper().Contains(searchString.ToUpper())).ToList();
                 }
-                else return false;
+                else if (searchBy == "Author")
+                {
+                    books =
+                        Db.Books.Where(
+                            b =>
+                                b.AuthorsList.FirstOrDefault(
+                                    a =>
+                                        a.Name.Contains(searchString) || a.SecondName.Contains(searchString) ||
+                                        a.LastName.Contains(searchString)) != null).ToList();
+                }
             }
-            else return false;
+            return PartialView("BookSearch", books);
+        }
+
+        public ActionResult AutoCompleteSearch(string term)
+        {
+            var authors =
+                Db.Authors.Where(a => a.Name.Contains(term) || a.SecondName.Contains(term) || a.LastName.Contains(term)).ToList().Select(aa => new {value = aa.LastName});
+            return Json(authors, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Student(int id)
@@ -58,60 +71,6 @@ namespace Library_CourseWorkDB.Controllers
             return View(model.RequestsList);
         }
 
-        public bool IsContainsSN(string searchString, Author author)
-        {
-            if (author.SecondName != null)
-            {
-                if (author.SecondName.ToUpper().Contains(searchString.ToUpper()))
-                {
-                    return true;
-                }
-                else return false;
-            }
-            else return false;
-        }
-        public bool IsContainsN(string searchString, Author author)
-        {
-            if (author.Name != null)
-            {
-                if (author.Name.ToUpper().Contains(searchString.ToUpper()))
-                {
-                    return true;
-                }
-                else return false;
-            }
-            else return false;
-        }
-        [AllowAnonymous]
-        public ActionResult Search(string searchBy, string searchString)
-        {
-                List<Book> books = Db.Books.ToList();
-                List<Author> authors = Db.Authors.ToList();
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    if(searchBy == "Title")
-                    {
-                        books = books.Where(x => x.Name.ToUpper().Contains(searchString.ToUpper())).ToList();
-                        return View(books.ToList()); 
-                    }
-                    else if (searchBy == "Author")
-                    {
-                        List<Book> booksA = new List<Book>();
-                        foreach (var author in authors)
-                        {
-                            if (IsContainsLN(searchString, author) || IsContainsSN(searchString, author) || IsContainsN(searchString, author))
-                                {
-                                    foreach (var book in author.BooksList)
-                                    {
-                                        booksA.Add(book);
-                                    }
-                                }
-                        }
-                        return View(booksA.ToList());
-                    }
-                }
-            return RedirectToAction("Index");
-        }
         [AllowAnonymous]
         public ActionResult About()
         {
@@ -119,6 +78,11 @@ namespace Library_CourseWorkDB.Controllers
         }
         [AllowAnonymous]
         public ActionResult Contact()
+        {
+            return View();
+        }
+
+        public ActionResult KnockOutDemo()
         {
             return View();
         }

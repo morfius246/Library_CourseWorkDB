@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Library_CourseWorkDB.Models.Book>
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+    <div class="book">
+        <div style="float: right">
+            @Html.ActionLink("Просмотреть книгу", "Details", "Book", new { id = item.ID }, new { @class = "btn btn-success" })
+            <div style="float: right; margin-left: 4px">
+                @if (User.IsInRole("Librarian") || User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink(" ", "Edit", "Book", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil" })
+                    <br />
+                    @Html.ActionLink(" ", "Delete", "Book", new { id = item.ID }, new { @class = "glyphicon glyphicon-remove" })
+                }
+            </div>
+        </div>
+        <div style="width: 70%; font-size: large">
+            @Html.DisplayFor(x => item.Name)<br>
+        </div>
+        <div style="width: 70%">
+            @if (item.AuthorsList != null && item.AuthorsList.Count > 0)
+            {
+                int count = 0;
+                foreach (var author in item.AuthorsList)
+                {
+                <span>@author.GetShortName()</span>
+                    count++;
+                    if (count < item.AuthorsList.Count)
+                    {
+                <span>/</span>
+                    }
+                }
+            }
+            else
+            {
+                <span>Немає авторів</span>
+            }
+        </div>
+        <div style="width: 70%">
+            Рік видання: @Html.DisplayFor(x => item.EditionYear) р.<br>
+        </div>
+
+    </div>
+    }
+}

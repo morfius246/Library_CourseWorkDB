@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+<table class="table table-striped table-bordered table-condensed">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Edition Year</th>
+            <th>Publishing</th>
+            <th>Pages</th>
+            <th>UDC ID</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach:books">
+        <tr>
+            <td data-bind="text: ID"></td>
+            <td data-bind="text: Name"></td>
+            <td data-bind="text: EditionYear"></td>
+            <td data-bind="text: Publishing"></td>
+            <td data-bind="text: Pages"></td>
+            <td data-bind="text: UDCID"></td>
+            <td>
+                <input type="button" class="btn btn-danger btn-xs" value=" [x] delete " data-bind="click: $parent.removeBook" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<input type="button" class="btn btn-default" id="btnGetStudents" value="Refresh" data-bind="click: getBooks" /> 

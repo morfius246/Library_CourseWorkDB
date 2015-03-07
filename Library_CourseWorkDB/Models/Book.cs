@@ -39,6 +39,17 @@ namespace Library_CourseWorkDB.Models
         public virtual ICollection<Author> AuthorsList { get; set; }
         public virtual ICollection<BookCopy> BookCopies { get; set; }
 
+        public Book(){}
+
+        public Book(BookModel bookModel)
+        {
+            Name = bookModel.Name;
+            EditionYear = bookModel.EditionYear;
+            Publishing = bookModel.Publishing;
+            Pages = bookModel.Pages;
+            UDCID = bookModel.UDCID;
+        }
+
         public string GetShortName(int length = 22)
         {
             if (Name == null)

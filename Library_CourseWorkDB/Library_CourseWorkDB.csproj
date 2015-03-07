@@ -62,6 +62,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -201,6 +202,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BAL\PdfManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookApiController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
@@ -228,6 +230,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\BookModel.cs" />
     <Compile Include="Models\HomeContext.cs" />
     <Compile Include="Models\BookCopy.cs" />
     <Compile Include="Models\ConfirmedRequest.cs" />
@@ -313,6 +316,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="KnockoutModels\BookRegisterViewModel.js" />
     <Content Include="NuGet.exe" />
     <Content Include="Rotativa\libeay32.dll" />
     <Content Include="Rotativa\libgcc_s_dw2-1.dll" />
@@ -339,6 +343,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\knockout-3.2.0.debug.js" />
+    <Content Include="Scripts\knockout-3.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -399,6 +405,10 @@
     <Content Include="Views\Book\AddAuthor.cshtml" />
     <Content Include="Views\Book\AuthorListPartial.cshtml" />
     <Content Include="Views\Home\Student.cshtml" />
+    <Content Include="Views\Home\BookSearch.cshtml" />
+    <Content Include="Views\Shared\_CreateBook.cshtml" />
+    <Content Include="Views\Home\KnockOutDemo.cshtml" />
+    <Content Include="Views\Shared\_BookList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "KnockOutDemo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #main {
+        
+    }
+
+    #leftMenu {
+        width: 300px;
+        float: left;
+    }
+    #subBody {
+        float: left;
+    }
+</style>
+
+<script src="~/Scripts/knockout-3.2.0.js"></script>
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/KnockoutModels/BookRegisterViewModel.js"></script>
+
+<h2>KnockOutDemo</h2>
+<div id="main">
+    <div id="leftMenu" data-bind="with: createBookViewModel">
+        @Html.Partial("_CreateBook")
+    </div>
+
+    <div id="subBody" data-bind="with: bookListViewModel">
+        @Html.Partial("_BookList")
+    </div>
+</div>
